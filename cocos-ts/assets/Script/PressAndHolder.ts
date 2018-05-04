@@ -10,13 +10,13 @@
 
 import Player from './Player';
 
-const {ccclass, property} = cc._decorator;
+const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class PressAndHolder extends cc.Component {
 
     @property(cc.Float)
-    maxPressTimeMS:number = 2000;
+    maxPressTimeMS: number = 2000;
 
     @property(cc.Label)
     textLabel: cc.Label = null;
@@ -36,33 +36,34 @@ export default class PressAndHolder extends cc.Component {
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
-        this.enableListeners();        
+    onLoad() {
+        this.enableListeners();
     }
 
-    enableListeners () {
+    enableListeners() {
         cc.log('set input');
-        this.touchStart = this.node.on(cc.Node.EventType.TOUCH_START, function onTouchStart(event){
-            this.player.startSquash();
+        this.touchStart = this.node.on(cc.Node.EventType.TOUCH_START, function onTouchStart(event) {
+            this.player.startSquash(this.maxPressTimeMS);
             this.touchStartTime = Date.now();
+            this.touching = true;
         }, this, true);
         this.touchEnd = this.node.on(cc.Node.EventType.TOUCH_END, function onTouchEnd(event) {
             this.touchEndTime = Date.now();
             this.touchTotalTime = this.touchEndTime - this.touchStartTime;
-            if(this.touchTotalTime >= this.maxPressTimeMS) this.touchTotalTime = this.maxPressTimeMS;
+            if (this.touchTotalTime >= this.maxPressTimeMS) this.touchTotalTime = this.maxPressTimeMS;
             this.player.jump(this.touchTotalTime / this.maxPressTimeMS);
 
             this.textLabel.string = this.touchTotalTime;
         }, this, true);
     }
 
-    disableListeners () {
+    disableListeners() {
         this.node.off(cc.Node.EventType.TOUCH_START, this.touchStart, this.node);
-        this.node.off(cc.Node.EventType.TOUCH_END,   this.touchEnd,   this.node);
+        this.node.off(cc.Node.EventType.TOUCH_END, this.touchEnd, this.node);
     }
 
-    start () {
+    start() {
     }
 
-    // update (dt) {}
+    // update(dt) {}
 }

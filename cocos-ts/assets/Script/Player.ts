@@ -17,39 +17,50 @@ export default class Player extends cc.Component {
 
     // onLoad () {}
     jumpDuration = 0.4;
-    //todo: use the screen height to define maximum movement
-    jumpMaxPower = 1000;
+    jumpMaxPower = 10;
 
     squashDuration = 0.1;
-
+    
     isSquashing = false;
     maxSquash = 0.2;
+    squashAnimation: cc.ActionInterval = null;
 
-    curSquash = 1;
-    squashStep = 0.7;
+    curSquash:number = 1;
+
+    initialPos: cc.Vec2 = null;
+
+    jitterOffset: number = 100;
+
     start () {
+        this.initialPos = this.node.getPosition();
+        this.jumpMaxPower = cc.winSize.height;
     }
 
     update (dt) {
         if(this.isSquashing){
-            this.curSquash -= this.squashStep * dt;
-            if(this.curSquash < this.maxSquash) this.curSquash = this.maxSquash;
-            cc.log('setting scale: '+this.curSquash);
-            this.node.setScale(1,this.curSquash);
+            if(this.node.scaleY <= this.maxSquash) {
+                this.curSquash = this.maxSquash;
+                //make it jitter
+                var newX = this.initialPos.x + Math.sin(Date.now()) * dt * this.jitterOffset;
+                this.node.setPositionX(newX);
+            }
         }
     }
 
     jump(power) {
         this.isSquashing = false;
+        this.node.stopAction(this.squashAnimation);
         var jumpUp = cc.moveBy(0.5, cc.p(0,this.jumpMaxPower*power)).easing(cc.easeCubicActionOut());
         var stretch = cc.scaleTo(this.squashDuration, 1, 1.2);
         var scaleBack = cc.scaleTo(this.squashDuration, 1, 1);      
         this.node.runAction(cc.sequence(stretch, jumpUp, scaleBack));
     }
 
-    startSquash() {
+    startSquash(maxHoldTime) {
         this.curSquash = 1;
         this.isSquashing = true;
+        this.squashAnimation = cc.scaleTo(maxHoldTime/1000, 1, this.maxSquash);
+        this.node.runAction(this.squashAnimation);
     }
 
 }
