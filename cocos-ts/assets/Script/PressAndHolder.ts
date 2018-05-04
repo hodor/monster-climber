@@ -7,22 +7,17 @@
 // Learn life-cycle callbacks:
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
-
-import Player from './Player';
+import World from './World';
 
 const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class PressAndHolder extends cc.Component {
 
+    world:World = null;
+
     @property(cc.Float)
     maxPressTimeMS: number = 2000;
-
-    @property(cc.Label)
-    textLabel: cc.Label = null;
-
-    @property(Player)
-    player: Player = null;
 
     //Time handling
     touchStartTime = null;
@@ -37,13 +32,11 @@ export default class PressAndHolder extends cc.Component {
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
-        this.enableListeners();
     }
 
     enableListeners() {
-        cc.log('set input');
         this.touchStart = this.node.on(cc.Node.EventType.TOUCH_START, function onTouchStart(event) {
-            this.player.startSquash(this.maxPressTimeMS);
+            this.world.touchStart(this.maxPressTimeMS);
             this.touchStartTime = Date.now();
             this.touching = true;
         }, this, true);
@@ -51,9 +44,7 @@ export default class PressAndHolder extends cc.Component {
             this.touchEndTime = Date.now();
             this.touchTotalTime = this.touchEndTime - this.touchStartTime;
             if (this.touchTotalTime >= this.maxPressTimeMS) this.touchTotalTime = this.maxPressTimeMS;
-            this.player.jump(this.touchTotalTime / this.maxPressTimeMS);
-
-            this.textLabel.string = this.touchTotalTime;
+            this.world.touchEnd(this.touchTotalTime / this.maxPressTimeMS);
         }, this, true);
     }
 
@@ -62,7 +53,11 @@ export default class PressAndHolder extends cc.Component {
         this.node.off(cc.Node.EventType.TOUCH_END, this.touchEnd, this.node);
     }
 
-    start() {
+    start() 
+    {}
+    
+    setWorld(world){
+        this.world = world;
     }
 
     // update(dt) {}

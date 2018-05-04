@@ -14,7 +14,13 @@ const { ccclass, property } = cc._decorator;
 export default class NewClass extends cc.Component {
 
     @property(cc.Prefab)
-    bgPrefab: cc.Prefab = null;
+    bgPrefabA: cc.Prefab = null;
+
+    @property(cc.Prefab)
+    bgPrefabB: cc.Prefab = null;    
+
+    @property(cc.Prefab)
+    bgPrefabC: cc.Prefab = null;    
 
     bg_A: cc.Node = null;
     bg_B: cc.Node = null;
@@ -30,7 +36,7 @@ export default class NewClass extends cc.Component {
         var scaleY;
         this.totalHeight = cc.winSize.height;
 
-        this.bg_A = cc.instantiate(this.bgPrefab);
+        this.bg_A = cc.instantiate(this.bgPrefabA);
         size = this.bg_A.getContentSize();
         scaleX = scaleY = cc.winSize.height / size.height;
 
@@ -40,13 +46,13 @@ export default class NewClass extends cc.Component {
         this.bg_A.name = 'A';
         this.node.addChild(this.bg_A);
 
-        this.bg_B = cc.instantiate(this.bgPrefab);
+        this.bg_B = cc.instantiate(this.bgPrefabB);
         this.bg_B.setScale(scaleX, scaleY);
         this.bg_B.color = cc.color(0, 255, 0, 255);
         this.bg_B.name = 'B';
         this.node.addChild(this.bg_B);
 
-        this.bg_C = cc.instantiate(this.bgPrefab);
+        this.bg_C = cc.instantiate(this.bgPrefabC);
         this.bg_C.setScale(scaleX, scaleY);
         this.bg_C.setPositionY(-this.totalHeight);
         this.bg_C.color = cc.color(0, 0, 255, 255);
@@ -58,7 +64,6 @@ export default class NewClass extends cc.Component {
     }
 
     update(dt) {
-        this.node.setPositionY(this.node.getPositionY() - dt * 1000);
         this.repositionPrefabs();
     }
 
@@ -88,7 +93,8 @@ export default class NewClass extends cc.Component {
         this.repositionNode(this.bg_C, this.bg_A);
     }
 
-    moveDownBy(amount) {
-
+    moveDownBy(amount, time) {
+        var movement = cc.moveBy(time, 0, amount);
+        this.node.runAction(movement);
     }
 }

@@ -30,6 +30,7 @@ export default class Player extends cc.Component {
     initialPos: cc.Vec2 = null;
 
     jitterOffset: number = 100;
+    lastDistanceJumped: number = 0;
 
     start () {
         this.initialPos = this.node.getPosition();
@@ -47,13 +48,14 @@ export default class Player extends cc.Component {
         }
     }
 
-    jump(power) {
+    jump(power, callback, callbackTarget) {
         this.isSquashing = false;
-        this.node.stopAction(this.squashAnimation);
-        var jumpUp = cc.moveBy(0.5, cc.p(0,this.jumpMaxPower*power)).easing(cc.easeCubicActionOut());
+        this.node.stopAllActions();
+        this.lastDistanceJumped = this.jumpMaxPower * power;
+        var jumpUp = cc.moveBy(0.5, cc.p(0,this.lastDistanceJumped)).easing(cc.easeCubicActionOut());
         var stretch = cc.scaleTo(this.squashDuration, 1, 1.2);
         var scaleBack = cc.scaleTo(this.squashDuration, 1, 1);      
-        this.node.runAction(cc.sequence(stretch, jumpUp, scaleBack));
+        this.node.runAction(cc.sequence(stretch, jumpUp, scaleBack, cc.callFunc(callback, callbackTarget)));
     }
 
     startSquash(maxHoldTime) {
@@ -61,6 +63,16 @@ export default class Player extends cc.Component {
         this.isSquashing = true;
         this.squashAnimation = cc.scaleTo(maxHoldTime/1000, 1, this.maxSquash);
         this.node.runAction(this.squashAnimation);
+    }
+
+    getDistance() {
+        return this.lastDistanceJumped;
+    }
+
+    moveDownBy(amount, time, callback, target){
+        this.node.stopAllActions();
+        var movement = cc.moveBy(time, 0, amount);
+        this.node.runAction(cc.sequence(movement, cc.callFunc(callback, target)));
     }
 
 }
