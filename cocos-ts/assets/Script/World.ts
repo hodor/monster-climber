@@ -11,8 +11,33 @@
 import Player from './Player';
 import PressAndHolder from './PressAndHolder';
 import InfiniteVerticalBg from './background/InfiniteVerticalBg';
+import StateMachine from './FSM/StateMachine';
+import IntroState from './FSM/States/Main/IntroState';
+import GameState from './FSM/States/Main/GameState';
 
 const {ccclass, property} = cc._decorator;
+
+export enum MainStates {
+    INTRO = 0,
+    GAME,
+    REWARDED,
+    CONTEXT_UPDATE,
+    ADS,
+    MENU,
+    CHALLENGE,
+    LEADERBOARD
+}
+
+export enum GameStates {
+    NULL = 0,
+    SPAWN_HANDS,
+    IDLE,
+    PRESSING,
+    JUMPING,
+    END,
+    WIN,
+    LOSE
+}
 
 @ccclass
 export default class World extends cc.Component {
@@ -28,38 +53,37 @@ export default class World extends cc.Component {
     @property(PressAndHolder)
     input: PressAndHolder = null;
 
+    mainFSM:StateMachine<MainStates> = null;
+
     debug:boolean = false;
 
     // LIFE-CYCLE CALLBACKS:
 
+    setupMainFSM(){
+        this.mainFSM = new StateMachine<MainStates>(MainStates.INTRO, 'IntroState', this);
+        this.mainFSM.addTransaction(MainStates.INTRO, MainStates.GAME, 'GameState', this.testFunction);
+    }
+
+    setupGameFSM(){
+
+    }
+
     onLoad () {
         this.input.setWorld(this);
         this.background.setWorld(this);
-        this.input.enableListeners();
+        this.setupMainFSM();
+        this.setupGameFSM();
     }
 
     start () {
+
     }
 
-    // update (dt) {}
-
-    touchStart(maxPressTimeMS){
-        this.player.startSquash(maxPressTimeMS);
+    testFunction() {
+        cc.log('Moving to the GAME state', this);
     }
 
-    touchEnd(power){
-        this.input.disableListeners();        
-        this.player.jump(power, this.jumpFinished, this);
+    update (dt) {
     }
-
-    jumpFinished(p) {
-        var distance = -this.player.getDistance();
-        this.player.moveDownBy(distance, this.cameraFollowTimeMS, this.checkLandedPosition, this);
-        this.background.moveDownBy(distance, this.cameraFollowTimeMS);
-    }
-
-    checkLandedPosition() {
-        //if game continues
-        this.input.enableListeners();
-    }
+    
 }

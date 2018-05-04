@@ -29,16 +29,22 @@ export default class PressAndHolder extends cc.Component {
     touchStart = null;
     touchEnd = null;
 
+    //Callbacks
+    private callbackTouchStart:Function = null;
+    private callbackTouchEnd:Function = null;
+    private target:Object = null;
+
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
+        this.enabled = false;
     }
 
     enableListeners() {
         this.enabled = true;
         this.touchStart = this.node.on(cc.Node.EventType.TOUCH_START, function onTouchStart(event) {
             if(!this.enabled) return;
-            this.world.touchStart(this.maxPressTimeMS);
+            this.callbackTouchStart.call(this.target, this.maxPressTimeMS);
             this.touchStartTime = Date.now();
             this.touching = true;
         }, this, true);
@@ -47,7 +53,7 @@ export default class PressAndHolder extends cc.Component {
             this.touchEndTime = Date.now();
             this.touchTotalTime = this.touchEndTime - this.touchStartTime;
             if (this.touchTotalTime >= this.maxPressTimeMS) this.touchTotalTime = this.maxPressTimeMS;
-            this.world.touchEnd(this.touchTotalTime / this.maxPressTimeMS);
+            this.callbackTouchEnd.call(this.target, this.touchTotalTime / this.maxPressTimeMS);
         }, this, true);
     }
 
@@ -62,6 +68,18 @@ export default class PressAndHolder extends cc.Component {
     
     setWorld(world){
         this.world = world;
+    }
+
+    setTarget(t:Object){
+        this.target = t;
+    }
+
+    setStartCallback(f:Function) {
+        this.callbackTouchStart = f;
+    }
+
+    setEndCallback(f:Function){
+        this.callbackTouchEnd = f;
     }
 
     // update(dt) {}

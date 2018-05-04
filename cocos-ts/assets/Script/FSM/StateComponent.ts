@@ -8,25 +8,30 @@
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
-import MonsterArm from './MonsterArm';
+import StateMachine from './StateMachine';
+import World from '../World';
 
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class MonsterFactory extends cc.Component {
+export default class StateComponent extends cc.Component {
 
-    @property(cc.Prefab)
-    Arm_Left: cc.Prefab = null;
+    public fsm:any = null;
+    protected world:World = null;
 
-    @property(cc.Prefab)
-    Arm_Right: cc.Prefab = null;
+    onLoad () {}
 
-    // onLoad () {}
+    start () {
 
-    start () { }
-    // update (dt) {}
+    }
 
-    spawnArms() {
+    update (dt) {}
 
+    setWorld(world:World){
+        this.world = world;
+    }
+
+    changeState(state:any) {
+        this.fsm.changeState(state);
     }
 }
