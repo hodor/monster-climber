@@ -8,7 +8,7 @@
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
-const {ccclass, property} = cc._decorator;
+const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class NewClass extends cc.Component {
@@ -20,33 +20,75 @@ export default class NewClass extends cc.Component {
     bg_B: cc.Node = null;
     bg_C: cc.Node = null;
 
+    totalHeight = 0;
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
+    onLoad() {
+        var size;
+        var scaleX;
+        var scaleY;
+        this.totalHeight = cc.winSize.height;
+
         this.bg_A = cc.instantiate(this.bgPrefab);
-        var size = this.bg_A.getContentSize();
-        this.bg_A.setScale(cc.winSize.width / size.width, cc.winSize.height / size.height);
-    //    this.bg_A.setPosition(cc.winSize.width/2, cc.winSize.height/2);
+        size = this.bg_A.getContentSize();
+        scaleX = scaleY = cc.winSize.height / size.height;
+
+        this.bg_A.setScale(scaleX, scaleY);
+        this.bg_A.setPositionY(this.totalHeight);
+        this.bg_A.color = cc.color(255, 0, 0, 255);
+        this.bg_A.name = 'A';
         this.node.addChild(this.bg_A);
-        /*
-        this.sprites = new Array<cc.Sprite>();
-        var s1 = new cc.Sprite();
-        s1.name = 'A';
-        s1.spriteFrame = this.image;
-        s1.node.setContentSize(cc.winSize);
-        this.node.setContentSize(cc.winSize);
-        */
-     //   this.node.addChild(s1);
+
+        this.bg_B = cc.instantiate(this.bgPrefab);
+        this.bg_B.setScale(scaleX, scaleY);
+        this.bg_B.color = cc.color(0, 255, 0, 255);
+        this.bg_B.name = 'B';
+        this.node.addChild(this.bg_B);
+
+        this.bg_C = cc.instantiate(this.bgPrefab);
+        this.bg_C.setScale(scaleX, scaleY);
+        this.bg_C.setPositionY(-this.totalHeight);
+        this.bg_C.color = cc.color(0, 0, 255, 255);
+        this.bg_C.name = 'C';
+        this.node.addChild(this.bg_C);
     }
 
-    start () {
-
+    start() {
     }
 
-    // update (dt) {}
+    update(dt) {
+        this.node.setPositionY(this.node.getPositionY() - dt * 1000);
+        this.repositionPrefabs();
+    }
 
-    moveDownBy(amount){
+    getWorldPos(node: cc.Node) {
+        return this.node.convertToWorldSpace(node.getPosition());
+    }
+
+    isBelowScreen(node: cc.Node) {
+        var pos = this.getWorldPos(node);
+        return (pos.y <= -this.totalHeight)
+    }
+
+    repositionNode(from: cc.Node, to: cc.Node) {
+        if (this.isBelowScreen(from)) {
+            var toPos = this.getWorldPos(to);
+            var newY = toPos.y + this.totalHeight;
+            var curY = this.getWorldPos(from).y;
+            var diffY = newY - curY;
+            var localY = from.getPositionY() + diffY;
+            from.setPosition(cc.v2(from.getPositionX(), localY));          
+        }
+    }
+
+    repositionPrefabs() {
+        this.repositionNode(this.bg_A, this.bg_B);
+        this.repositionNode(this.bg_B, this.bg_C);
+        this.repositionNode(this.bg_C, this.bg_A);
+    }
+
+    moveDownBy(amount) {
 
     }
 }
