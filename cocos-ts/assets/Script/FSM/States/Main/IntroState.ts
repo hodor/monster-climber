@@ -9,7 +9,7 @@
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
 import StateComponent from '../../StateComponent';
-import {MainStates} from '../../../World';
+import {MainStates} from '../../../World/World';
 
 const {ccclass, property} = cc._decorator;
 

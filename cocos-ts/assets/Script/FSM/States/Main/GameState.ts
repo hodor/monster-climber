@@ -1,8 +1,9 @@
 import StateComponent from "../../StateComponent";
-import World from "../../../World";
+import World from "../../../World/World";
 import Player from "../../../Player";
 import PressAndHolder from "../../../PressAndHolder";
 import InfiniteVerticalBg from "../../../background/InfiniteVerticalBg";
+import StateMachine from "../../StateMachine";
 
 // Learn TypeScript:
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/typescript.html
@@ -16,13 +17,21 @@ import InfiniteVerticalBg from "../../../background/InfiniteVerticalBg";
 
 const {ccclass, property} = cc._decorator;
 
+export enum GameStates {
+    SPAWN_HANDS,
+    HANDLE_INPUT,
+    JUMP_ANIMATION,
+    HAND_HIT,
+    END,
+    WIN,
+    LOSE
+}
+
 @ccclass
 export default class GameState extends StateComponent {
 
     // LIFE-CYCLE CALLBACKS:
-    player:Player = null;
-    input:PressAndHolder = null;
-    background:InfiniteVerticalBg = null
+    FSM:StateMachine<GameStates> = null;
 
     onLoad () {
     }
@@ -30,40 +39,23 @@ export default class GameState extends StateComponent {
     //Override
     public setWorld(world:World){
         super.setWorld(world);
-        this.player = this.world.player;
-        this.input = this.world.input;
-        this.background = this.world.background;
+        this.FSM = new StateMachine<GameStates>(GameStates.SPAWN_HANDS, 'GameSpawnHandsState', this.world, this);
+        this.setupFSM();
+    }
+
+    setupFSM(){
+        this.FSM.addTransaction(GameStates.SPAWN_HANDS, GameStates.HANDLE_INPUT, 'GameHandleInputState');
+        this.FSM.addTransaction(GameStates.HANDLE_INPUT, GameStates.JUMP_ANIMATION, 'GameJumpState');
+        this.FSM.addTransaction(GameStates.JUMP_ANIMATION, GameStates.HAND_HIT, 'GameHandHitState');
+        this.FSM.addTransaction(GameStates.HAND_HIT, GameStates.WIN, 'GameWinState');
+        this.FSM.addTransaction(GameStates.HAND_HIT, GameStates.LOSE, 'GameLoseState');
     }
 
     start () {
-        this.input.setStartCallback(this.touchStart);
-        this.input.setEndCallback(this.touchEnd);
-        this.input.setTarget(this); 
-        this.input.enableListeners();
+        super.start();
     }
-
-    touchStart(maxPressTimeMS){
-        this.player.startSquash(maxPressTimeMS);
-        
-    }
-
-    touchEnd(power){
-        this.input.disableListeners();        
-        this.player.jump(power, this.jumpFinished, this);
-    }
-
-    jumpFinished(p) {
-        var distance = -this.player.getDistance();
-        this.player.moveDownBy(distance, this.world.cameraFollowTimeMS, this.checkLandedPosition, this);
-        this.background.moveDownBy(distance, this.world.cameraFollowTimeMS);
-    }
-
-    checkLandedPosition() {
-        //if game continues
-        this.input.enableListeners();
-    }
-
+    
     update (dt) {
-        cc.log('ON GAME');
+        super.update(dt);
     }
 }

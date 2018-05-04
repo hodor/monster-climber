@@ -9,7 +9,7 @@
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
 import StateComponent from './StateComponent';
-import World from '../World';
+import World from '../World/World';
 
 const {ccclass, property} = cc._decorator;
 
@@ -42,12 +42,14 @@ export default class StateMachine<T> extends cc.Object {
     public currentState:T;
     public currentComponent:string;
 
-    private baseComponent:cc.Component;
-    constructor (initState:T, initComponent:string, baseContext:cc.Component) {
+    private world:World;
+    private callbackContext:Object;
+    constructor (initState:T, initComponent:string, world:World, callbackContext:Object) {
         super();
         this.currentState = initState;
         this.currentComponent = initComponent;
-        this.baseComponent = baseContext;
+        this.world = world;
+        this.callbackContext = callbackContext;
         this.addComponent(this.currentComponent);
     }
 
@@ -56,14 +58,14 @@ export default class StateMachine<T> extends cc.Object {
     }
 
     public addTransaction(from:T, to:T, component:string, callback?:Function) : void {
-        this.transactions[this.getId(from, to)] = new Transaction(from, to, component, callback, this.baseComponent);
+        this.transactions[this.getId(from, to)] = new Transaction(from, to, component, callback, this.callbackContext);
     }
 
     public changeState(newState:T) : boolean {
         var id = this.getId(this.currentState, newState);
         var t:Transaction<T> = this.transactions[id];
         if(t) {
-            this.baseComponent.node.removeComponent(this.currentComponent);
+            this.world.node.removeComponent(this.currentComponent);
             this.currentComponent = t.component;
             this.currentState = t.to;
             t.call();
@@ -76,9 +78,9 @@ export default class StateMachine<T> extends cc.Object {
 
     private addComponent(componentType:string){
         cc.log('adding component '+this.currentComponent);
-        var component = this.baseComponent.node.addComponent(this.currentComponent);
+        var component = this.world.node.addComponent(this.currentComponent);
         var sComponent = component as StateComponent;
         sComponent.fsm = this;
-        sComponent.setWorld(this.baseComponent as World);
+        sComponent.setWorld(this.world as World);
     }
 }

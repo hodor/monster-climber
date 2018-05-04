@@ -8,12 +8,13 @@
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
-import Player from './Player';
-import PressAndHolder from './PressAndHolder';
-import InfiniteVerticalBg from './background/InfiniteVerticalBg';
-import StateMachine from './FSM/StateMachine';
-import IntroState from './FSM/States/Main/IntroState';
-import GameState from './FSM/States/Main/GameState';
+import Player from '../Player';
+import PressAndHolder from '../PressAndHolder';
+import InfiniteVerticalBg from '../background/InfiniteVerticalBg';
+import StateMachine from '../FSM/StateMachine';
+import IntroState from '../FSM/States/Main/IntroState';
+import GameState from '../FSM/States/Main/GameState';
+import WorldWrapper from './WorldWrapper';
 
 const {ccclass, property} = cc._decorator;
 
@@ -26,17 +27,6 @@ export enum MainStates {
     MENU,
     CHALLENGE,
     LEADERBOARD
-}
-
-export enum GameStates {
-    NULL = 0,
-    SPAWN_HANDS,
-    IDLE,
-    PRESSING,
-    JUMPING,
-    END,
-    WIN,
-    LOSE
 }
 
 @ccclass
@@ -53,30 +43,28 @@ export default class World extends cc.Component {
     @property(PressAndHolder)
     input: PressAndHolder = null;
 
+    //The main state machine
     mainFSM:StateMachine<MainStates> = null;
-
     debug:boolean = false;
+
+    // The wrapper for all states
+    public wrapper:WorldWrapper = null;
 
     // LIFE-CYCLE CALLBACKS:
 
     setupMainFSM(){
-        this.mainFSM = new StateMachine<MainStates>(MainStates.INTRO, 'IntroState', this);
+        this.mainFSM = new StateMachine<MainStates>(MainStates.INTRO, 'IntroState', this, this);
         this.mainFSM.addTransaction(MainStates.INTRO, MainStates.GAME, 'GameState', this.testFunction);
-    }
-
-    setupGameFSM(){
-
     }
 
     onLoad () {
         this.input.setWorld(this);
         this.background.setWorld(this);
+        this.wrapper = new WorldWrapper(this);
         this.setupMainFSM();
-        this.setupGameFSM();
     }
 
     start () {
-
     }
 
     testFunction() {
