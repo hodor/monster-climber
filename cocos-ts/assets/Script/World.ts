@@ -28,10 +28,13 @@ export default class World extends cc.Component {
     @property(PressAndHolder)
     input: PressAndHolder = null;
 
+    debug:boolean = false;
+
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
         this.input.setWorld(this);
+        this.background.setWorld(this);
         this.input.enableListeners();
     }
 
@@ -45,8 +48,8 @@ export default class World extends cc.Component {
     }
 
     touchEnd(power){
+        this.input.disableListeners();        
         this.player.jump(power, this.jumpFinished, this);
-        this.input.disableListeners();
     }
 
     jumpFinished(p) {

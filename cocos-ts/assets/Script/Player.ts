@@ -21,7 +21,9 @@ export default class Player extends cc.Component {
 
     squashDuration = 0.1;
     
+    //Make a state machine if this gets too complicated
     isSquashing = false;
+
     maxSquash = 0.2;
     squashAnimation: cc.ActionInterval = null;
 

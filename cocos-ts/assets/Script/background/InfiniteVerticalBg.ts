@@ -8,6 +8,7 @@
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
+import World from '../World';
 const { ccclass, property } = cc._decorator;
 
 @ccclass
@@ -27,6 +28,11 @@ export default class NewClass extends cc.Component {
     bg_C: cc.Node = null;
 
     totalHeight = 0;
+    world:World = null;
+
+    setWorld(world) {
+        this.world = world;
+    }
 
     // LIFE-CYCLE CALLBACKS:
 
@@ -42,20 +48,23 @@ export default class NewClass extends cc.Component {
 
         this.bg_A.setScale(scaleX, scaleY);
         this.bg_A.setPositionY(this.totalHeight);
-        this.bg_A.color = cc.color(255, 0, 0, 255);
+        if(this.world.debug)
+            this.bg_A.color = cc.color(255, 0, 0, 255);
         this.bg_A.name = 'A';
         this.node.addChild(this.bg_A);
 
         this.bg_B = cc.instantiate(this.bgPrefabB);
         this.bg_B.setScale(scaleX, scaleY);
-        this.bg_B.color = cc.color(0, 255, 0, 255);
+        if(this.world.debug)
+            this.bg_B.color = cc.color(0, 255, 0, 255);
         this.bg_B.name = 'B';
         this.node.addChild(this.bg_B);
 
         this.bg_C = cc.instantiate(this.bgPrefabC);
         this.bg_C.setScale(scaleX, scaleY);
         this.bg_C.setPositionY(-this.totalHeight);
-        this.bg_C.color = cc.color(0, 0, 255, 255);
+        if(this.world.debug)
+            this.bg_C.color = cc.color(0, 0, 255, 255);
         this.bg_C.name = 'C';
         this.node.addChild(this.bg_C);
     }

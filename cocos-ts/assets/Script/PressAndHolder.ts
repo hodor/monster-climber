@@ -35,12 +35,15 @@ export default class PressAndHolder extends cc.Component {
     }
 
     enableListeners() {
+        this.enabled = true;
         this.touchStart = this.node.on(cc.Node.EventType.TOUCH_START, function onTouchStart(event) {
+            if(!this.enabled) return;
             this.world.touchStart(this.maxPressTimeMS);
             this.touchStartTime = Date.now();
             this.touching = true;
         }, this, true);
         this.touchEnd = this.node.on(cc.Node.EventType.TOUCH_END, function onTouchEnd(event) {
+            if(!this.enabled) return;
             this.touchEndTime = Date.now();
             this.touchTotalTime = this.touchEndTime - this.touchStartTime;
             if (this.touchTotalTime >= this.maxPressTimeMS) this.touchTotalTime = this.maxPressTimeMS;
@@ -49,6 +52,7 @@ export default class PressAndHolder extends cc.Component {
     }
 
     disableListeners() {
+        this.enabled = false;
         this.node.off(cc.Node.EventType.TOUCH_START, this.touchStart, this.node);
         this.node.off(cc.Node.EventType.TOUCH_END, this.touchEnd, this.node);
     }
