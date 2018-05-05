@@ -10,9 +10,6 @@
   "curveData": {
     "props": {},
     "paths": {
-      "bg_02": {
-        "props": {}
-      },
       "intro": {
         "props": {
           "scale": [
