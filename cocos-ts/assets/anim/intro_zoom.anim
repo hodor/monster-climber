@@ -3,74 +3,67 @@
   "_name": "intro_zoom",
   "_objFlags": 0,
   "_rawFiles": null,
-  "_duration": 1.6666666666666667,
+  "_duration": 2.4,
   "sample": 60,
   "speed": 1,
   "wrapMode": 1,
   "curveData": {
-    "props": {
-      "scale": [
-        {
-          "frame": 0,
-          "value": {
-            "__type__": "cc.Vec2",
-            "x": 1,
-            "y": 1
-          }
-        },
-        {
-          "frame": 0.4166666666666667,
-          "value": {
-            "__type__": "cc.Vec2",
-            "x": 1,
-            "y": 1
-          }
-        },
-        {
-          "frame": 1.6666666666666667,
-          "value": {
-            "__type__": "cc.Vec2",
-            "x": 8,
-            "y": 8
-          }
+    "props": {},
+    "paths": {
+      "bg_02": {
+        "props": {}
+      },
+      "intro": {
+        "props": {
+          "scale": [
+            {
+              "frame": 0,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 1,
+                "y": 1
+              }
+            },
+            {
+              "frame": 0.21666666666666667,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 1,
+                "y": 1
+              }
+            },
+            {
+              "frame": 1.9833333333333334,
+              "value": {
+                "__type__": "cc.Vec2",
+                "x": 12,
+                "y": 12
+              }
+            }
+          ],
+          "y": [
+            {
+              "frame": 0.21666666666666667,
+              "value": 0
+            },
+            {
+              "frame": 1.9833333333333334,
+              "value": -1370
+            }
+          ],
+          "opacity": [
+            {
+              "frame": 1.5,
+              "value": 255
+            },
+            {
+              "frame": 2.4,
+              "value": 0
+            }
+          ]
         }
-      ],
-      "y": [
-        {
-          "frame": 0,
-          "value": 0
-        },
-        {
-          "frame": 0.4166666666666667,
-          "value": 0
-        },
-        {
-          "frame": 1.6666666666666667,
-          "value": -571
-        }
-      ],
-      "opacity": [
-        {
-          "frame": 1.1666666666666667,
-          "value": 255
-        },
-        {
-          "frame": 1.6666666666666667,
-          "value": 0
-        }
-      ]
+      }
     }
   },
-  "events": [
-    {
-      "frame": 0,
-      "func": "",
-      "params": []
-    },
-    {
-      "frame": 0.16666666666666666,
-      "func": "",
-      "params": []
-    }
-  ]
+  "events": []
 }

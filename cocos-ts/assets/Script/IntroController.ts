@@ -33,8 +33,7 @@ export default class IntroController extends cc.Component {
     }
 
     playIntro () {
-        cc.log("should have played");
-        this.animation = this.getComponentInChildren(cc.Animation);
+        this.animation = this.getComponent(cc.Animation);
         this.animation.play();
         this.animation.on('finished', this.goToGameState, this);
         this.hasPlayed = true;
@@ -42,6 +41,7 @@ export default class IntroController extends cc.Component {
 
     goToGameState () {
         this.world.mainFSM.changeState(MainStates.GAME);
+        this.node.destroy();
     }
 
     update (dt) {
