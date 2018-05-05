@@ -2,7 +2,9 @@
   "appKey": "",
   "appSecret": "",
   "encryptJs": true,
-  "excludeScenes": [],
+  "excludeScenes": [
+    "f1075263-aead-41b1-a8ca-b5b805abdca3"
+  ],
   "fb-instant-games": {},
   "includeAnySDK": false,
   "includeSDKBox": false,
@@ -28,7 +30,7 @@
   "renderMode": "0",
   "startScene": "a89e1fd4-e8be-4ded-87e8-47fc6268fb31",
   "title": "monster_climber",
-  "webOrientation": "auto",
+  "webOrientation": "portrait",
   "wechatgame": {
     "REMOTE_SERVER_ROOT": "",
     "appid": "wx6ac3f5090a6b99c5",
