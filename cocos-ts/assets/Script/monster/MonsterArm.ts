@@ -25,30 +25,31 @@ export default class MonsterArm extends cc.Component {
     armInst: cc.Node = null;
 
     neededHeight = 400;
-    safePoint:cc.Vec2 = null;
+    safePoint: cc.Vec2 = null;
     @property
     isRight = false;
+    @property
+    howMuchOnTopOfTarget = 0.10416666666666667;
 
-    //Arm transform
-    yPos: number = 0;
-    yAnchor: number = 0;
 
     start() {
-        if(this.isRight) return;
         this.shadowInst = cc.instantiate(this.shadow);
         var height = this.shadowInst.getContentSize().height;
         var scale = this.neededHeight / height;
+        var scaledHeight = (height * scale);
+        var yPos, xPos;
 
         if (this.isRight) {
             this.shadowInst.setScale(-scale, scale);
-            this.yPos = this.node.convertToNodeSpaceAR(this.safePoint).y;
+            yPos = this.safePoint.y - (scaledHeight/2) + (this.howMuchOnTopOfTarget * scaledHeight);
+            xPos = -cc.winSize.width/2;
         } else {
-            cc.log('safePoint: %o', this.safePoint);
             this.shadowInst.setScale(scale);
-            this.yPos = -(cc.winSize.height - this.safePoint.y);
+            yPos = this.safePoint.y + (scaledHeight / 2) - (this.howMuchOnTopOfTarget * scaledHeight);
+            xPos = cc.winSize.width/2;
         }
-        cc.log('yPos: '+this.yPos);
-        this.shadowInst.setPosition(0, this.yPos);
+        cc.log('yPos: ' + yPos);
+        this.shadowInst.setPosition(xPos, yPos);
         this.shadowInst.opacity = 0;
         this.node.addChild(this.shadowInst);
         var anim = this.shadowInst.getComponent(cc.Animation);
@@ -72,15 +73,15 @@ export default class MonsterArm extends cc.Component {
         this.safePoint = point;
     }
 
-    spawnedCallback:Function = null;
-    spawnedCallbackTarget:Object = null;
+    spawnedCallback: Function = null;
+    spawnedCallbackTarget: Object = null;
 
-    setSpawnedCallback(callback:Function, target:Object) {
+    setSpawnedCallback(callback: Function, target: Object) {
         this.spawnedCallback = callback;
         this.spawnedCallbackTarget = target;
     }
 
-    update (dt) {
+    update(dt) {
 
     }
 }

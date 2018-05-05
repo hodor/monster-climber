@@ -92,9 +92,9 @@ export default class MonsterFactory extends cc.Component {
             cc.log('0 to local space: %o', this.maximumArea.convertToNodeSpace(cc.v2(0, 0)));
             this.maximumArea.setPositionY(firstPoint.y);
             this.maximumArea.setContentSize(640, safeAreaHeight);
-
             this.centerLine.setPositionY(targetY);
         }
+        
         this.left = cc.instantiate(this.LeftPrefab);
         this.armLeft = this.left.getComponent(MonsterArm);
         this.node.addChild(this.left);
