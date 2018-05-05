@@ -1,0 +1,30 @@
+{
+  "ver": "1.0.0",
+  "uuid": "b4cf2cf0-456f-41ae-869f-12f3192ca321",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "subMetas": {
+    "argo2": {
+      "ver": "1.0.3",
+      "uuid": "30c2188c-62f8-4b43-aeff-ea63ae0967d4",
+      "rawTextureUuid": "b4cf2cf0-456f-41ae-869f-12f3192ca321",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -0.5,
+      "offsetY": 0.5,
+      "trimX": 6,
+      "trimY": 21,
+      "width": 128,
+      "height": 191,
+      "rawWidth": 141,
+      "rawHeight": 234,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

@@ -64,6 +64,7 @@ export default class GameState extends StateComponent {
         this.world.monsterFactory.deleteArms();
         this.world.player.node.setPositionY(Player.initialPos.y);
         this.score = 0;
+        this.world.player.resetScore();
         this.world.labelScore.string = this.score.toFixed(0);
     }
 }

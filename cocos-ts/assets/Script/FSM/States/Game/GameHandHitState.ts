@@ -10,15 +10,11 @@ export default class GameHandHitState extends BaseGameState {
 
     start() {
         super.start();
-        this.armHit();
+        this.calculateResult();
     }
 
     update(dt) {
         super.update(dt);
-    }
-
-    armHit() {
-        this.calculateResult();
     }
 
     calculateResult() {

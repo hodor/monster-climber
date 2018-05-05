@@ -54,7 +54,7 @@ export default class MonsterArm extends cc.Component {
         this.shadowInst.opacity = 0;
         this.node.addChild(this.shadowInst);
         var anim = this.shadowInst.getComponent(cc.Animation);
-        anim.on('finished', this.finishedEnter, this);
+        anim.once('finished', this.finishedEnter, this);
         anim.play('shadow_enter', 0);
     }
 
@@ -62,8 +62,54 @@ export default class MonsterArm extends cc.Component {
         this.spawnedCallback.call(this.spawnedCallbackTarget);
     }
 
-    hit() {
+    hit(){
+        this.armInst = cc.instantiate(this.arm);
+        var height = this.armInst.getContentSize().height;
+        var scale = this.neededHeight / height;
+        var scaledHeight = (height * scale);
+        var yPos, xPos, xPosInit;
+        var scaleAnim;
+        
+        if (this.isRight) {
+            this.armInst.setScale(-scale * 1.5, scale * 1.5);
+            scaleAnim = cc.scaleBy(0.5, 0.5, 0.5);
+            yPos = this.safePoint.y - (scaledHeight/2) + (this.howMuchOnTopOfTarget * scaledHeight);
+            xPos = -cc.winSize.width/2;
+            xPosInit = -cc.winSize.width*2;
+        } else {
+            this.armInst.setScale(scale * 1.5);
+            scaleAnim = cc.scaleBy(0.5, 0.5, 0.5);
+            yPos = this.safePoint.y + (scaledHeight / 2) - (this.howMuchOnTopOfTarget * scaledHeight);
+            xPos = cc.winSize.width/2;
+            xPosInit = cc.winSize.width*2;
+        }
+        this.armInst.setPosition(xPosInit, yPos);
+        var enter = cc.moveBy(0.25, xPos - xPosInit, 0);
+        var shadowScaleAnim = cc.scaleBy(0.5, 0.8, 0.8);
+        this.armInst.runAction(enter);
+        this.armInst.runAction(scaleAnim);
+        this.shadowInst.runAction(shadowScaleAnim);
+        this.node.addChild(this.armInst);     
+    }
 
+    move(distance, timeToMove) {
+        var action = cc.moveBy(timeToMove, 0, distance);
+        this.node.runAction(action);
+    }
+
+    moveOut(time, callback?, target?){
+        var action;
+        if(this.isRight){
+            action = cc.moveBy(time, -cc.winSize.width, 0);
+        } else {
+            action = cc.moveBy(time, cc.winSize.width, 0);            
+        }
+        this.armInst.runAction(action);            
+        var anim = this.shadowInst.getComponent(cc.Animation);
+        if(callback){
+            anim.once('finished', callback, target);
+        }
+        anim.play('shadow_exit', 0);
     }
 
     setHeight(height) {
