@@ -11,7 +11,8 @@ export default class GameWinState extends BaseGameState {
 
     start () {
         super.start();
-        this.w.monsterFactory.deleteArms();
+        var distance = -this.w.player.getDistance();
+        this.w.monsterFactory.move(distance, this.world.cameraFollowTimeMS);
         this.move();
     }
 
@@ -26,6 +27,11 @@ export default class GameWinState extends BaseGameState {
     }
 
     finishedMoving() {
+        this.w.monsterFactory.moveOut(0.25, this.finish, this);
+    }
+
+    finish(){
+        this.w.monsterFactory.deleteArms();
         this.changeState(GameStates.SPAWN_HANDS);
     }
 }
