@@ -11,7 +11,8 @@ export default class GameSpawnHandsState extends BaseGameState {
 
     start () {
         super.start();
-        this.w.monsterFactory.spawnArms(this.finishedSpawn, this);
+        var p:cc.Vec2 = this.w.player.getNextTarget();
+        this.w.monsterFactory.spawnArms(p, this.finishedSpawn, this);
     }
 
     finishedSpawn() {

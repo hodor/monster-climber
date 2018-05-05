@@ -14,6 +14,10 @@ const {ccclass, property} = cc._decorator;
 export default class Player extends cc.Component {
 
     // LIFE-CYCLE CALLBACKS:
+    @property
+    targetMinDist = 0.1;
+    @property
+    targetMaxDist = 0.7;
 
     // onLoad () {}
     jumpDuration = 0.4;
@@ -75,6 +79,16 @@ export default class Player extends cc.Component {
         this.node.stopAllActions();
         var movement = cc.moveBy(time, 0, amount);
         this.node.runAction(cc.sequence(movement, cc.callFunc(callback, target)));
+    }
+
+    // Get the next target point
+    getNextTarget() {
+        cc.log('min dist: '+this.targetMinDist*this.jumpMaxPower);
+        cc.log('max dist: '+this.targetMaxDist*this.jumpMaxPower);
+        var targetDist = (this.targetMinDist + (Math.random() * (this.targetMaxDist - this.targetMinDist))) * this.jumpMaxPower;
+        cc.log('targetDist '+targetDist);
+        var targetYPos = Player.initialPos.y + targetDist;
+        return cc.v2(0,targetYPos);
     }
 
 }

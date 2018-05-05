@@ -25,7 +25,7 @@ export default class MonsterArm extends cc.Component {
     armInst: cc.Node = null;
 
     neededHeight = 400;
-    safePoint = 0;
+    safePoint:cc.Vec2 = null;
     @property
     isRight = false;
 
@@ -34,17 +34,20 @@ export default class MonsterArm extends cc.Component {
     yAnchor: number = 0;
 
     start() {
+        if(this.isRight) return;
         this.shadowInst = cc.instantiate(this.shadow);
         var height = this.shadowInst.getContentSize().height;
         var scale = this.neededHeight / height;
 
         if (this.isRight) {
             this.shadowInst.setScale(-scale, scale);
-            this.yPos = this.safePoint;
+            this.yPos = this.node.convertToNodeSpaceAR(this.safePoint).y;
         } else {
+            cc.log('safePoint: %o', this.safePoint);
             this.shadowInst.setScale(scale);
-            this.yPos = this.safePoint;
+            this.yPos = -(cc.winSize.height - this.safePoint.y);
         }
+        cc.log('yPos: '+this.yPos);
         this.shadowInst.setPosition(0, this.yPos);
         this.shadowInst.opacity = 0;
         this.node.addChild(this.shadowInst);
@@ -65,8 +68,8 @@ export default class MonsterArm extends cc.Component {
         this.neededHeight = height;
     }
 
-    setSafePoint(y) {
-        this.safePoint = y;
+    setSafePoint(point) {
+        this.safePoint = point;
     }
 
     spawnedCallback:Function = null;
@@ -77,5 +80,7 @@ export default class MonsterArm extends cc.Component {
         this.spawnedCallbackTarget = target;
     }
 
-    // update (dt) {}
+    update (dt) {
+
+    }
 }
