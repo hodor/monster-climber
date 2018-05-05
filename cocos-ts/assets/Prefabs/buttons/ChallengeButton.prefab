@@ -10,7 +10,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "RetryButton",
+    "_name": "ChallengeButton",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -47,8 +47,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 340,
-      "height": 107
+      "width": 581,
+      "height": 78
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -57,7 +57,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": 320,
-      "y": 150.5
+      "y": 274
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -75,7 +75,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "46383724-2328-4932-8ced-8b296ac4ded1"
+      "__uuid__": "474df143-e472-4e74-a554-c79f2946029b"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -135,13 +135,13 @@
       "a": 255
     },
     "_N$normalSprite": {
-      "__uuid__": "46383724-2328-4932-8ced-8b296ac4ded1"
+      "__uuid__": "474df143-e472-4e74-a554-c79f2946029b"
     },
     "_N$pressedSprite": {
-      "__uuid__": "d70e5b05-5116-4919-9e26-444dc0766eae"
+      "__uuid__": "880916df-c356-49e7-ae1d-d4324c120685"
     },
     "pressedSprite": {
-      "__uuid__": "d70e5b05-5116-4919-9e26-444dc0766eae"
+      "__uuid__": "880916df-c356-49e7-ae1d-d4324c120685"
     },
     "_N$hoverSprite": null,
     "hoverSprite": null,
@@ -164,7 +164,7 @@
     "_left": -50,
     "_right": 590,
     "_top": 0,
-    "_bottom": 97,
+    "_bottom": 235,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
     "_isAbsLeft": true,
@@ -182,7 +182,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "21eeb1d0-786e-48f8-b42f-837378fc14f2"
+      "__uuid__": "b5f69166-443e-4b34-9c90-d8ffca2bfd2a"
     },
     "fileId": "a7QKU3x+dEyqHXR6iO3STa",
     "sync": false
