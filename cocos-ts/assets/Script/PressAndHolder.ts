@@ -42,14 +42,15 @@ export default class PressAndHolder extends cc.Component {
 
     enableListeners() {
         this.enabled = true;
+        this.isTouching = false;
         this.touchStart = this.node.on(cc.Node.EventType.TOUCH_START, function onTouchStart(event) {
             if(!this.enabled) return;
             this.callbackTouchStart.call(this.target, this.maxPressTimeMS);
             this.touchStartTime = Date.now();
-            this.touching = true;
+            this.isTouching = true;
         }, this, true);
         this.touchEnd = this.node.on(cc.Node.EventType.TOUCH_END, function onTouchEnd(event) {
-            if(!this.enabled) return;
+            if(!this.enabled || !this.isTouching) return;
             this.touchEndTime = Date.now();
             this.touchTotalTime = this.touchEndTime - this.touchStartTime;
             if (this.touchTotalTime >= this.maxPressTimeMS) this.touchTotalTime = this.maxPressTimeMS;
