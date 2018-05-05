@@ -920,6 +920,9 @@
     },
     "monsterFactory": {
       "__id__": 22
+    },
+    "btnRetry": {
+      "__uuid__": "21eeb1d0-786e-48f8-b42f-837378fc14f2"
     }
   },
   {

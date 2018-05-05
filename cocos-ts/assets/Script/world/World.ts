@@ -47,6 +47,9 @@ export default class World extends cc.Component {
     @property(MonsterFactory)
     monsterFactory: MonsterFactory = null;
 
+    @property(cc.Prefab)
+    btnRetry: cc.Prefab = null;
+
     //The main state machine
     mainFSM:StateMachine<MainStates> = null;
     debug:boolean = false;

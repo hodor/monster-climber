@@ -40,6 +40,7 @@ export default class GameState extends StateComponent {
         this.FSM.addTransaction(GameStates.HAND_HIT, GameStates.WIN, 'GameWinState', this.updateScore);
         this.FSM.addTransaction(GameStates.HAND_HIT, GameStates.LOSE, 'GameLoseState', this.handleLose);
         this.FSM.addTransaction(GameStates.WIN, GameStates.SPAWN_HANDS, 'GameSpawnHandsState');
+        this.FSM.addTransaction(GameStates.LOSE, GameStates.SPAWN_HANDS, 'GameSpawnHandsState', this.resetGame);
     }
 
     start () {
@@ -57,5 +58,10 @@ export default class GameState extends StateComponent {
 
     handleLose(){
         this.score = 0;
+    }
+
+    resetGame() {
+        this.world.monsterFactory.deleteArms();
+        this.world.player.node.setPositionY(Player.initialPos.y);
     }
 }

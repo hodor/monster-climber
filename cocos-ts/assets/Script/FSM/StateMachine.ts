@@ -65,6 +65,7 @@ export default class StateMachine<T> extends cc.Object {
         var id = this.getId(this.currentState, newState);
         var t:Transaction<T> = this.transactions[id];
         if(t) {
+            var mComponent:cc.Component = this.world.node.getComponent(this.currentComponent);
             this.world.node.removeComponent(this.currentComponent);
             this.currentComponent = t.component;
             this.currentState = t.to;

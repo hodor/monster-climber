@@ -13,6 +13,9 @@ export default class WorldWrapper extends cc.Object {
     public input:PressAndHolder;
     public background:InfiniteVerticalBg;
     public monsterFactory:MonsterFactory;
+    
+    //Buttons
+    public btnRetry:cc.Prefab;
 
     constructor(world:World){
         super();
@@ -20,5 +23,6 @@ export default class WorldWrapper extends cc.Object {
         this.input = world.input;
         this.background = world.background;
         this.monsterFactory = world.monsterFactory;
+        this.btnRetry = world.btnRetry;
     }
 }
