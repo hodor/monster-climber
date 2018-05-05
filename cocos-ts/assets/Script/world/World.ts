@@ -75,7 +75,7 @@ export default class World extends cc.Component {
     }
 
     testFunction() {
-        cc.log('Moving to the GAME state', this);
+
     }
 
     update (dt) {
