@@ -50,7 +50,6 @@ export default class MonsterArm extends cc.Component {
             yPos = this.safePoint.y + (scaledHeight / 2) - (this.howMuchOnTopOfTarget * scaledHeight);
             xPos = cc.winSize.width/2;
         }
-        cc.log('yPos: ' + yPos);
         this.shadowInst.setPosition(xPos, yPos);
         this.shadowInst.opacity = 0;
         this.node.addChild(this.shadowInst);

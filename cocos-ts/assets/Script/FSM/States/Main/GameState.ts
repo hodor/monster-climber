@@ -52,16 +52,18 @@ export default class GameState extends StateComponent {
     }
 
     updateScore(){
-        this.score++;
-        cc.log('score: '+this.score);
+        this.score += this.world.player.handleScore(this.world.monsterFactory.totalSafeHeight);
+        this.world.labelScore.string = this.score.toFixed(0);
     }
 
     handleLose(){
-        this.score = 0;
+
     }
 
     resetGame() {
         this.world.monsterFactory.deleteArms();
         this.world.player.node.setPositionY(Player.initialPos.y);
+        this.score = 0;
+        this.world.labelScore.string = this.score.toFixed(0);
     }
 }

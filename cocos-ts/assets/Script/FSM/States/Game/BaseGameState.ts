@@ -23,7 +23,7 @@ export default class BaseGameState extends StateComponent {
     }
 
     start() {
-        cc.log('START Game State: '+this.constructor['name']);        
+        cc.log(this.constructor['name']);        
     }
 
     update(dt) {

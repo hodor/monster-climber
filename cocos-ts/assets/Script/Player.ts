@@ -1,3 +1,5 @@
+import ScoreSmall from "./ui/ScoreSmall";
+
 // Learn TypeScript:
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/typescript.html
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/typescript.html
@@ -18,6 +20,10 @@ export default class Player extends cc.Component {
     targetMinDist = 0.1;
     @property
     targetMaxDist = 0.7;
+    @property(cc.Prefab)
+    scoreUI:cc.Prefab = null;
+    @property
+    maxDistForPerfect = 10;
 
     // onLoad () {}
     jumpDuration = 0.4;
@@ -97,6 +103,28 @@ export default class Player extends cc.Component {
 
     getMaxLandPoint(){
         return cc.v2(0, Player.initialPos.y + (this.targetMaxDist*this.jumpMaxPower));
+    }
+
+    scoreMultiplier: number = 1;
+    handleScore(totalSafeHeight): number {
+        var dist = (Math.abs(this.safePoint.y - this.getLandedPoint().y));
+        var score = 1;
+        // Check if we are indeed in the green area
+        if(dist > totalSafeHeight/2){
+            score = 0;
+        } else {
+            if(dist <= this.maxDistForPerfect){
+                score = Math.pow(2, this.scoreMultiplier);
+                this.scoreMultiplier++;
+            } else {
+                this.scoreMultiplier = 1;
+            }
+            var ui = cc.instantiate(this.scoreUI);
+            var scorescript = ui.getComponent(ScoreSmall);
+            scorescript.setScore(score);
+            this.node.addChild(ui);
+        }
+        return score;
     }
 
 }
