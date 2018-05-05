@@ -26,9 +26,10 @@ export default class GameHandHitState extends BaseGameState {
 
         var isSafe: boolean = false;
         if (landed.y < this.w.player.getMaxLandPoint().y &&
-            this.w.monsterFactory.isPointSafe(landed))
+            this.w.monsterFactory.isPointSafe(landed)) {
             this.changeState(GameStates.WIN);
-        else
+
+        } else
             this.changeState(GameStates.LOSE);
 
     }

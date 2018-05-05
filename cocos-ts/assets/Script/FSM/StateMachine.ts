@@ -78,7 +78,6 @@ export default class StateMachine<T> extends cc.Object {
     }
 
     private addComponent(componentType:string){
-        cc.log('adding component '+this.currentComponent);
         var component = this.world.node.addComponent(this.currentComponent);
         var sComponent = component as StateComponent;
         sComponent.fsm = this;

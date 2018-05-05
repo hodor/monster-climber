@@ -18,13 +18,18 @@ export default class ScoreSmall extends cc.Component {
     
     start () {
         var anim = this.node.getComponent(cc.Animation);
-        anim.on('finished', this.destroy);
+        anim.on('finished', this.remove, this);
         anim.play('score_small', 0);
     }
 
     setScore(score:number) {
         var label = this.node.getComponent(cc.Label);
         label.string = '+'+score;
+    }
+
+    remove() {
+        this.node.removeFromParent();
+        this.node.destroy();
     }
 
     // update (dt) {}
