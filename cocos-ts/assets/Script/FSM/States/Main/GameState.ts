@@ -53,7 +53,7 @@ export default class GameState extends StateComponent {
 
     updateScore(){
         this.score += this.world.player.handleScore(this.world.monsterFactory.totalSafeHeight);
-        cc.log('score: '+this.score);
+        this.world.labelScore.string = this.score.toFixed(0);
     }
 
     handleLose(){

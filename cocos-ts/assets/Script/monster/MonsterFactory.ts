@@ -34,6 +34,9 @@ export default class MonsterFactory extends cc.Component {
     @property(cc.Node)
     centerLine: cc.Node = null;
 
+    @property(cc.Node)
+    hint: cc.Node = null;
+
     @property
     topOffset: number = 80;
 
@@ -49,7 +52,7 @@ export default class MonsterFactory extends cc.Component {
     spawnedCallback: Function = null;
     spawnedCallbackTarget: Object = null;
 
-    debug = true;
+    debug = false;
 
     totalSafeHeight = 0;
 
@@ -67,6 +70,7 @@ export default class MonsterFactory extends cc.Component {
             this.minimumArea.active = false;
             this.centerLine.active = false;
         }
+        this.hideHint();
     }
     // update (dt) {}
 
@@ -76,6 +80,7 @@ export default class MonsterFactory extends cc.Component {
         // Calculating the safe area
         var safeAreaHeight = this.totalSafeHeight = this.minAreaHeight + (Math.random() * (this.maxAreaHeight - this.minAreaHeight));
         var targetY = spawnMid.y;
+        this.hint.setPositionY(targetY);
 
         // The hand size
         var neededHeight = cc.winSize.height * this.heightPercentage;
@@ -117,6 +122,15 @@ export default class MonsterFactory extends cc.Component {
         this.left = null;
         this.armLeft.destroy();
         this.armLeft = null;
+        this.hideHint();
+    }
+
+    showHint () {
+        this.hint.active = true;
+    }
+
+    hideHint() {
+        this.hint.active = false;
     }
 
 

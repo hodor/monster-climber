@@ -124,7 +124,6 @@ export default class Player extends cc.Component {
             scorescript.setScore(score);
             this.node.addChild(ui);
         }
-
         return score;
     }
 
