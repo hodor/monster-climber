@@ -127,4 +127,8 @@ export default class Player extends cc.Component {
         return score;
     }
 
+    resetScore(){
+        this.scoreMultiplier = 1;
+    }
+
 }
