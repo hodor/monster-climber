@@ -108,6 +108,17 @@ export default class MonsterFactory extends cc.Component {
         this.armRight.setSpawnedCallback(this.rightSpawned, this);
     }
 
+    deleteArms() {
+        this.right.destroy();
+        this.right = null;
+        this.armRight.destroy();
+        this.armRight = null;
+        this.left.destroy();
+        this.left = null;
+        this.armLeft.destroy();
+        this.armLeft = null;
+    }
+
 
     leftSpawned() {
         this.spawnedCallback.call(this.spawnedCallbackTarget);

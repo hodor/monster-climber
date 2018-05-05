@@ -11,6 +11,8 @@ export default class GameWinState extends BaseGameState {
 
     start () {
         super.start();
+        this.w.monsterFactory.deleteArms();
+        this.move();
     }
 
     update (dt) {
