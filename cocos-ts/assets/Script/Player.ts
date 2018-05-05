@@ -18,6 +18,8 @@ export default class Player extends cc.Component {
     targetMinDist = 0.1;
     @property
     targetMaxDist = 0.7;
+    @property(cc.Prefab)
+    scoreUI:cc.Prefab = null;
 
     // onLoad () {}
     jumpDuration = 0.4;
