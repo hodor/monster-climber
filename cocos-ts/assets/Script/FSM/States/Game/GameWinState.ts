@@ -16,4 +16,14 @@ export default class GameWinState extends BaseGameState {
     update (dt) {
         super.update(dt);
     }
+
+    move(){
+        var distance = -this.w.player.getDistance();
+        this.w.player.moveDownBy(distance, this.world.cameraFollowTimeMS, this.finishedMoving, this);
+        this.w.background.moveDownBy(distance, this.world.cameraFollowTimeMS);
+    }
+
+    finishedMoving() {
+        this.changeState(GameStates.SPAWN_HANDS);
+    }
 }

@@ -26,10 +26,8 @@ export default class GameHandlInputState extends BaseGameState {
         this.w.player.jump(power, this.jumpFinished, this);
     }
 
-    jumpFinished(p) {
-        var distance = -this.w.player.getDistance();
-        this.w.player.moveDownBy(distance, this.world.cameraFollowTimeMS, this.checkLandedPosition, this);
-        this.w.background.moveDownBy(distance, this.world.cameraFollowTimeMS);
+    jumpFinished() {
+        this.changeState(GameStates.HAND_HIT);
     }
 
     checkLandedPosition() {

@@ -29,14 +29,16 @@ export default class MonsterArm extends cc.Component {
     @property
     isRight = false;
     @property
-    howMuchOnTopOfTarget = 0.10416666666666667;
+    howMuchOnTopOfTarget = 0.10416;
+
+    private scaledHeight: number = 0;
 
 
     start() {
         this.shadowInst = cc.instantiate(this.shadow);
         var height = this.shadowInst.getContentSize().height;
         var scale = this.neededHeight / height;
-        var scaledHeight = (height * scale);
+        var scaledHeight = this.scaledHeight = (height * scale);
         var yPos, xPos;
 
         if (this.isRight) {
@@ -83,5 +85,11 @@ export default class MonsterArm extends cc.Component {
 
     update(dt) {
 
+    }
+
+    isPointSafe(point:cc.Vec2) {
+        var y = point.y;
+        return !((y >= this.shadowInst.getPositionY() - (this.scaledHeight / 2) + (this.howMuchOnTopOfTarget * this.scaledHeight)) &&
+            (y <= this.shadowInst.getPositionY() + (this.scaledHeight / 2) - (this.howMuchOnTopOfTarget * this.scaledHeight)));
     }
 }

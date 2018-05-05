@@ -51,6 +51,8 @@ export default class MonsterFactory extends cc.Component {
 
     debug = true;
 
+    totalSafeHeight = 0;
+
     // onLoad () {}
 
     start() {
@@ -72,7 +74,7 @@ export default class MonsterFactory extends cc.Component {
         this.spawnedCallback = callback;
         this.spawnedCallbackTarget = target;
         // Calculating the safe area
-        var safeAreaHeight = this.minAreaHeight + (Math.random() * (this.maxAreaHeight - this.minAreaHeight));
+        var safeAreaHeight = this.totalSafeHeight = this.minAreaHeight + (Math.random() * (this.maxAreaHeight - this.minAreaHeight));
         var targetY = spawnMid.y;
 
         // The hand size
@@ -82,19 +84,13 @@ export default class MonsterFactory extends cc.Component {
         var firstPoint = cc.v2(0, targetY + (safeAreaHeight / 2)); // Top point
         var lastPoint = cc.v2(0, targetY - (safeAreaHeight / 2)); // Bottom point
 
-        cc.log('mid point: %o', spawnMid);
-        cc.log('safe height: ' + safeAreaHeight);
-        cc.log('first point: %o', firstPoint);
-        cc.log('last point %o', lastPoint);
-
         if (this.debug) {
             this.maximumArea.anchorY = 1;
-            cc.log('0 to local space: %o', this.maximumArea.convertToNodeSpace(cc.v2(0, 0)));
             this.maximumArea.setPositionY(firstPoint.y);
             this.maximumArea.setContentSize(640, safeAreaHeight);
             this.centerLine.setPositionY(targetY);
         }
-        
+
         this.left = cc.instantiate(this.LeftPrefab);
         this.armLeft = this.left.getComponent(MonsterArm);
         this.node.addChild(this.left);
@@ -119,5 +115,9 @@ export default class MonsterFactory extends cc.Component {
 
     rightSpawned() {
 
+    }
+
+    isPointSafe(point:cc.Vec2):boolean {
+        return this.armLeft.isPointSafe(point) && this.armRight.isPointSafe(point);
     }
 }

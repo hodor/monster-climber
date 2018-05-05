@@ -10,9 +10,18 @@ export default class GameHandHitState extends BaseGameState {
 
     start () {
         super.start();
+        var landed = this.w.player.getLandedPoint();
+
+        var isSafe: boolean = false;
+        if(this.w.monsterFactory.isPointSafe(landed))
+            cc.log('IS SAFE');
+        else   
+            cc.log('IS DEAD');
     }
 
     update (dt) {
         super.update(dt);
     }
+
+
 }

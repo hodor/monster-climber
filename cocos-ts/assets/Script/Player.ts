@@ -81,14 +81,18 @@ export default class Player extends cc.Component {
         this.node.runAction(cc.sequence(movement, cc.callFunc(callback, target)));
     }
 
+    safePoint:cc.Vec2 = null;
+
     // Get the next target point
     getNextTarget() {
-        cc.log('min dist: '+this.targetMinDist*this.jumpMaxPower);
-        cc.log('max dist: '+this.targetMaxDist*this.jumpMaxPower);
         var targetDist = (this.targetMinDist + (Math.random() * (this.targetMaxDist - this.targetMinDist))) * this.jumpMaxPower;
-        cc.log('targetDist '+targetDist);
         var targetYPos = Player.initialPos.y + targetDist;
-        return cc.v2(0,targetYPos);
+        this.safePoint = cc.v2(0,targetYPos);
+        return this.safePoint;
+    }
+
+    getLandedPoint() {
+        return cc.v2(0, Player.initialPos.y + this.getDistance());
     }
 
 }
