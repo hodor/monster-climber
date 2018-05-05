@@ -8,32 +8,49 @@
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
+import World from './world/World';
+import {MainStates} from './world/World';
+
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class NewClass extends cc.Component {
-
-    @property(cc.Label)
-    label: cc.Label = null;
-
-    @property
-    introDelay: number = 0.3;
-
-    @property
-    totalTime: number = 0;
-
+export default class IntroController extends cc.Component {
+ 
+    @property(World)
+    world:World = null;
     // LIFE-CYCLE CALLBACKS:
+    animation:cc.Animation;
+    totalTime:number = 0;
 
-    // onLoad () {}
-
-    start () {
-
+    hasPlayed:boolean = false;
+    
+    onLoad () {
+        cc.log(this.world);
     }
 
-     update (dt) {
-		this.totalTime += dt;
-		
-     }
+    start () {
+        
+    }
+
+    playIntro () {
+        cc.log("should have played");
+        this.animation = this.getComponentInChildren(cc.Animation);
+        this.animation.play();
+        this.animation.on('finished', this.goToGameState, this);
+        this.hasPlayed = true;
+    }
+
+    goToGameState () {
+        cc.log(this.world);
+        this.world.mainFSM.changeState(MainStates.GAME);
+    }
+
+    update (dt) {
+        this.totalTime += dt;
+        if(this.totalTime >= 1 && !this.hasPlayed){
+            this.playIntro();
+        }
+    }
 
 
 }
