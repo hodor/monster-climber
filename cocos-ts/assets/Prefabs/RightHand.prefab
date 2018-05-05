@@ -10,7 +10,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "leftArm",
+    "_name": "RightHand",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -25,33 +25,33 @@
       "__id__": 3
     },
     "_id": "",
-    "_opacity": 100,
+    "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
-      "g": 0,
-      "b": 0,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
+      "x": 0,
+      "y": 1
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 640,
-      "height": 500
+      "width": 2219,
+      "height": 697
     },
     "_rotationX": 0,
     "_rotationY": 0,
-    "_scaleX": 1,
+    "_scaleX": -1,
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 403
+      "x": 640,
+      "y": 0
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -69,10 +69,10 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "410fb916-8721-4663-bab8-34397391ace7"
+      "__uuid__": "bd16028b-6d1e-4cec-a659-48edac8f1ad5"
     },
     "_type": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -92,9 +92,9 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "6f70e35e-edfd-4d09-80c5-606dd2419feb"
     },
-    "fileId": "adwAaUeddGFpNDQYimObiR",
+    "fileId": "c4J2v/EPBCGYAOmhPqxdN9",
     "sync": false
   }
 ]

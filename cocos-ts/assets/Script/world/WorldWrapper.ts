@@ -2,6 +2,7 @@ import PressAndHolder from "../PressAndHolder";
 import Player from "../Player";
 import InfiniteVerticalBg from "../background/InfiniteVerticalBg";
 import World from "./World";
+import MonsterFactory from "../monster/MonsterFactory";
 
 const {ccclass, property} = cc._decorator;
 
@@ -11,11 +12,13 @@ export default class WorldWrapper extends cc.Object {
     public player:Player;
     public input:PressAndHolder;
     public background:InfiniteVerticalBg;
+    public monsterFactory:MonsterFactory;
 
     constructor(world:World){
         super();
         this.player = world.player;
         this.input = world.input;
         this.background = world.background;
+        this.monsterFactory = world.monsterFactory;
     }
 }

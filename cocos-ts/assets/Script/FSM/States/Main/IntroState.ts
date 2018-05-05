@@ -27,7 +27,7 @@ export default class IntroState extends StateComponent {
     totalTime  = 0;
     update (dt) {
         this.totalTime += dt;
-        if(this.totalTime >= 3){
+        if(this.totalTime >= 1){
             super.changeState(MainStates.GAME);
         }
     }

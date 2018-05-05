@@ -15,6 +15,7 @@ import StateMachine from '../FSM/StateMachine';
 import IntroState from '../FSM/States/Main/IntroState';
 import GameState from '../FSM/States/Main/GameState';
 import WorldWrapper from './WorldWrapper';
+import MonsterFactory from '../monster/MonsterFactory';
 
 const {ccclass, property} = cc._decorator;
 
@@ -42,6 +43,9 @@ export default class World extends cc.Component {
 
     @property(PressAndHolder)
     input: PressAndHolder = null;
+
+    @property(MonsterFactory)
+    monsterFactory: MonsterFactory = null;
 
     //The main state machine
     mainFSM:StateMachine<MainStates> = null;

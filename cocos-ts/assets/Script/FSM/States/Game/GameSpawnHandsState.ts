@@ -11,14 +11,13 @@ export default class GameSpawnHandsState extends BaseGameState {
 
     start () {
         super.start();
+        this.w.monsterFactory.spawnArms(this.finishedSpawn, this);
     }
 
-    totalTime = 0;
+    finishedSpawn() {
+        this.changeState(GameStates.HANDLE_INPUT);
+    }
     update (dt) {
         super.update(dt);
-        this.totalTime += dt;
-        if(this.totalTime >= 2) {
-            this.changeState(GameStates.HANDLE_INPUT);
-        }
     }
 }

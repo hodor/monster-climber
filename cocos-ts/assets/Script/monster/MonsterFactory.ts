@@ -9,6 +9,7 @@
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
 import MonsterArm from './MonsterArm';
+import Player from '../Player';
 
 const {ccclass, property} = cc._decorator;
 
@@ -16,17 +17,85 @@ const {ccclass, property} = cc._decorator;
 export default class MonsterFactory extends cc.Component {
 
     @property(cc.Prefab)
-    Arm_Left: cc.Prefab = null;
+    LeftPrefab: cc.Prefab = null;
 
     @property(cc.Prefab)
-    Arm_Right: cc.Prefab = null;
+    RightPrefab: cc.Prefab = null;
+
+    @property
+    heightPercentage: number = 0.5;
+
+    @property(cc.Node)
+    maximumArea: cc.Node = null;
+
+    @property(cc.Node)
+    minimumArea: cc.Node = null;
+
+    @property
+    topOffset: number = 80;
+
+    left:cc.Node = null;
+    right:cc.Node = null;
+
+    armRight:MonsterArm = null;
+    armLeft:MonsterArm = null;
+
+    maxAreaHeight: number = 0;
+    minAreaHeight: number = 0;
+    
+    spawnedCallback:Function = null;
+    spawnedCallbackTarget:Object = null;
 
     // onLoad () {}
 
-    start () { }
+    start () { 
+        this.maxAreaHeight = this.maximumArea.getContentSize().height;
+        this.minAreaHeight = this.minimumArea.getContentSize().height;
+        this.maximumArea.active = true;
+        this.minimumArea.active = false;
+    }
     // update (dt) {}
 
-    spawnArms() {
+    spawnArms(callback:Function, target:Object) {
+        this.spawnedCallback = callback;
+        this.spawnedCallbackTarget = target;
+        var safeAreaHeight = this.minAreaHeight + (Math.random()*(this.maxAreaHeight - this.minAreaHeight));
+        var neededHeight = cc.winSize.height * this.heightPercentage;
+
+        //Find a random spot to start the safe area, from top to bottom
+        var firstPoint = -this.topOffset -(cc.winSize.height - (safeAreaHeight-Player.initialPos.y)-80) * Math.random()
+        var lastPoint = firstPoint - safeAreaHeight;
+
+        cc.log('safe height: '+safeAreaHeight);
+        cc.log('first point: '+firstPoint);
+        cc.log('last point'+ lastPoint);
+        this.maximumArea.anchorY = 1;
+        this.maximumArea.setPositionY(firstPoint);        
+        this.maximumArea.setContentSize(640, safeAreaHeight);
+
+        this.left = cc.instantiate(this.LeftPrefab);
+        this.armLeft = this.left.getComponent(MonsterArm);
+        this.node.addChild(this.left);
+        this.armLeft.setHeight(neededHeight);
+        this.armLeft.isRight = false;
+        this.armLeft.setSafePoint(firstPoint);
+        this.armLeft.setSpawnedCallback(this.leftSpawned, this);
+
+        this.right = cc.instantiate(this.RightPrefab);
+        this.armRight = this.right.getComponent(MonsterArm);
+        this.node.addChild(this.right);
+        this.armRight.setHeight(neededHeight);
+        this.armRight.isRight = true;
+        this.armRight.setSafePoint(lastPoint);
+        this.armRight.setSpawnedCallback(this.rightSpawned, this);
+    }
+
+    
+    leftSpawned(){
+        this.spawnedCallback.call(this.spawnedCallbackTarget);
+    }
+
+    rightSpawned(){
 
     }
 }

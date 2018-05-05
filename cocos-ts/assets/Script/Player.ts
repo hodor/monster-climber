@@ -29,13 +29,13 @@ export default class Player extends cc.Component {
 
     curSquash:number = 1;
 
-    initialPos: cc.Vec2 = null;
+    public static initialPos: cc.Vec2 = null;
 
     jitterOffset: number = 100;
     lastDistanceJumped: number = 0;
 
     start () {
-        this.initialPos = this.node.getPosition();
+        Player.initialPos = this.node.getPosition();
         this.jumpMaxPower = cc.winSize.height;
     }
 
@@ -44,7 +44,7 @@ export default class Player extends cc.Component {
             if(this.node.scaleY <= this.maxSquash) {
                 this.curSquash = this.maxSquash;
                 //make it jitter
-                var newX = this.initialPos.x + Math.sin(Date.now()) * dt * this.jitterOffset;
+                var newX = Player.initialPos.x + Math.sin(Date.now()) * dt * this.jitterOffset;
                 this.node.setPositionX(newX);
             }
         }
