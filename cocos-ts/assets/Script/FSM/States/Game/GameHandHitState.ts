@@ -25,7 +25,9 @@ export default class GameHandHitState extends BaseGameState {
         var landed = this.w.player.getLandedPoint();
 
         var isSafe: boolean = false;
-        if (this.w.monsterFactory.isPointSafe(landed))
+        cc.log('landed y: '+landed.y);
+        if (landed.y < this.w.player.getMaxLandPoint().y &&
+            this.w.monsterFactory.isPointSafe(landed))
             this.changeState(GameStates.WIN);
         else
             this.changeState(GameStates.LOSE);

@@ -95,4 +95,8 @@ export default class Player extends cc.Component {
         return cc.v2(0, Player.initialPos.y + this.getDistance());
     }
 
+    getMaxLandPoint(){
+        return cc.v2(0, Player.initialPos.y + (this.targetMaxDist*this.jumpMaxPower));
+    }
+
 }
