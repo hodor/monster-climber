@@ -154,6 +154,7 @@ export default class MonsterFactory extends cc.Component {
     move(distance, timeToMove) {
         this.armLeft.move(distance, timeToMove)
         this.armRight.move(distance, timeToMove)
+        this.hideHint();
     }
 
     moveOut(time, callback, target){
