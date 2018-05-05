@@ -145,4 +145,19 @@ export default class MonsterFactory extends cc.Component {
     isPointSafe(point:cc.Vec2):boolean {
         return this.armLeft.isPointSafe(point) && this.armRight.isPointSafe(point);
     }
+
+    hit() {
+        this.armLeft.hit();
+        this.armRight.hit();
+    }
+
+    move(distance, timeToMove) {
+        this.armLeft.move(distance, timeToMove)
+        this.armRight.move(distance, timeToMove)
+    }
+
+    moveOut(time, callback, target){
+        this.armLeft.moveOut(time, callback, target);
+        this.armRight.moveOut(time);
+    }
 }

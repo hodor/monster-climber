@@ -24,6 +24,7 @@ export default class GameHandlInputState extends BaseGameState {
     touchEnd(power){
         this.w.input.disableListeners();        
         this.w.player.jump(power, this.jumpFinished, this);
+        this.w.monsterFactory.hit();
     }
 
     jumpFinished() {

@@ -41,7 +41,6 @@ export default class IntroController extends cc.Component {
     }
 
     goToGameState () {
-        cc.log(this.world);
         this.world.mainFSM.changeState(MainStates.GAME);
     }
 

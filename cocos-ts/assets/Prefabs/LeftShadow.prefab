@@ -45,7 +45,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 2298,
-      "height": 836
+      "height": 768
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -101,6 +101,9 @@
     "_clips": [
       {
         "__uuid__": "c4ca5ed7-755c-4f1d-8eda-d50ef4ae79ef"
+      },
+      {
+        "__uuid__": "0623e2a4-a8b0-444b-849d-4da6435ce814"
       }
     ],
     "playOnLoad": false
