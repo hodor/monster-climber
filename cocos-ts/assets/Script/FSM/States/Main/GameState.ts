@@ -57,12 +57,13 @@ export default class GameState extends StateComponent {
     }
 
     handleLose(){
-        this.score = 0;
-        this.world.labelScore.string = this.score.toFixed(0);
+
     }
 
     resetGame() {
         this.world.monsterFactory.deleteArms();
         this.world.player.node.setPositionY(Player.initialPos.y);
+        this.score = 0;
+        this.world.labelScore.string = this.score.toFixed(0);
     }
 }
