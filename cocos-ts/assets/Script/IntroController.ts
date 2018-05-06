@@ -10,6 +10,7 @@
 
 import World from './world/World';
 import {MainStates} from './world/World';
+import FadeInFadeOut from './ui/FadeInFadeOut';
 
 const {ccclass, property} = cc._decorator;
 
@@ -59,6 +60,8 @@ export default class IntroController extends cc.Component {
 
     touchStart(event) {
         var actionFadeOut = cc.fadeTo(0.3, 0);
+        var FadeInFadeOutComp = this.node.getComponentInChildren(FadeInFadeOut);
+        FadeInFadeOutComp.destroy();
         this.instructionHoldSprite.node.runAction(cc.sequence(actionFadeOut, cc.callFunc(function callBack () {
                 if(!this.onTouchEnd) return;
                 var actionFadeIn = cc.fadeTo(0.5, 255);
