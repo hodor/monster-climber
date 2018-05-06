@@ -23,7 +23,7 @@ export default class Instant extends cc.Object {
     public static Platform: string;
     public static SDKVersion: string;
     public static init() {
-        if (FBInstant === undefined) {
+        if (typeof FBInstant === 'undefined') {
             return;
         }
 
@@ -44,7 +44,7 @@ export default class Instant extends cc.Object {
     }
 
     public static Share(callback: Function, target: Object) {
-        if (FBInstant === undefined) return;
+        if (typeof FBInstant === 'undefined') return;
         FBInstant.shareAsync({
             intent: 'SHARE',
             image: ShareImage.Base64,
@@ -55,7 +55,7 @@ export default class Instant extends cc.Object {
     }
 
     public static ChooseContext(callback: Function, target: Object) {
-        if (FBInstant === undefined) return;
+        if (typeof FBInstant === 'undefined')return;
         FBInstant.context
             .chooseAsync()
             .then(function () {
@@ -72,12 +72,12 @@ export default class Instant extends cc.Object {
     }
 
     public static PostMessage(callback:Function, target:Object){
-        if(FBInstant === undefined) return;
+        if(typeof FBInstant === 'undefined') return;
         FBInstant.updateAsync({
             action: 'CUSTOM',
             cta: 'Climb!',
             image: ShareImage.Base64,
-            text: 'Reach the monsters head',
+            text: "Reach the monster's head",
             template: '',
             strategy: 'IMMEDIATE',
             notification: 'NO_PUSH',
