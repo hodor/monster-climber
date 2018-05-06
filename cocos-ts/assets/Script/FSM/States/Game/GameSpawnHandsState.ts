@@ -13,6 +13,8 @@ export default class GameSpawnHandsState extends BaseGameState {
         super.start();
         var p:cc.Vec2 = this.w.player.getNextTarget();
         this.w.monsterFactory.spawnArms(p, this.finishedSpawn, this);
+        this.changeState(GameStates.HANDLE_INPUT);
+        
         // Also spawn hint if on bonus
         if(this.w.player.scoreMultiplier >= 2) {
             this.w.monsterFactory.showHint();
@@ -23,7 +25,6 @@ export default class GameSpawnHandsState extends BaseGameState {
     }
 
     finishedSpawn() {
-        this.changeState(GameStates.HANDLE_INPUT);
     }
     update (dt) {
         super.update(dt);
