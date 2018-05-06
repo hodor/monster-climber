@@ -37,6 +37,9 @@ export default class MonsterFactory extends cc.Component {
     @property(cc.Node)
     hint: cc.Node = null;
 
+    @property(cc.AudioClip)
+    armHitPlayer: cc.AudioClip = null;
+
     @property
     topOffset: number = 80;
 
@@ -53,12 +56,14 @@ export default class MonsterFactory extends cc.Component {
     spawnedCallbackTarget: Object = null;
 
     debug = false;
+    private audioSource:cc.AudioSource = null;
 
     totalSafeHeight = 0;
 
     // onLoad () {}
 
     start() {
+        this.audioSource = this.node.getComponent(cc.AudioSource);
         this.maxAreaHeight = this.maximumArea.getContentSize().height;
         this.minAreaHeight = this.minimumArea.getContentSize().height;
         if (this.debug) {
@@ -160,5 +165,11 @@ export default class MonsterFactory extends cc.Component {
     moveOut(time, callback, target){
         this.armLeft.moveOut(time, callback, target);
         this.armRight.moveOut(time);
+    }
+
+    playArmKilled() {
+        this.audioSource.stop();
+        this.audioSource.clip = this.armHitPlayer;
+        this.audioSource.play();
     }
 }
