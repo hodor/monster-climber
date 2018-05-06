@@ -66,8 +66,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 320,
-      "y": 480
+      "x": 0,
+      "y": 0
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -302,8 +302,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -320,
-      "y": -480
+      "x": 0,
+      "y": 0
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -368,7 +368,7 @@
       "__id__": 13
     },
     "_id": "",
-    "_opacity": 255,
+    "_opacity": 0,
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
@@ -450,10 +450,10 @@
     "_enabled": true,
     "world": null,
     "instructionHoldSprite": {
-      "__id__": 8
+      "__id__": 9
     },
     "instructionReleaseSprite": {
-      "__id__": 11
+      "__id__": 12
     },
     "PressAndHoldSound": {
       "__uuid__": "40093a9e-f501-48e7-8e87-938c868f0cc6"

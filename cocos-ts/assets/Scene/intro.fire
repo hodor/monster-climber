@@ -1497,10 +1497,10 @@
       "__id__": 33
     },
     "instructionHoldSprite": {
-      "__id__": 42
+      "__id__": 43
     },
     "instructionReleaseSprite": {
-      "__id__": 45
+      "__id__": 46
     },
     "PressAndHoldSound": {
       "__uuid__": "40093a9e-f501-48e7-8e87-938c868f0cc6"

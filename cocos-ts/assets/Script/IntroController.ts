@@ -49,10 +49,10 @@ export default class IntroController extends cc.Component {
 
     touchStart(event) {
         var actionFadeOut = cc.fadeTo(0.3, 0);
-        this.instructionHoldSprite.runAction(cc.sequence(actionFadeOut, cc.callFunc(function callBack () {
+        this.instructionHoldSprite.node.runAction(cc.sequence(actionFadeOut, cc.callFunc(function callBack () {
                 if(!this.onTouchEnd) return;
                 var actionFadeIn = cc.fadeTo(0.5, 255);
-                this.instructionReleaseSprite.runAction(actionFadeIn);    
+                this.instructionReleaseSprite.node.runAction(actionFadeIn);    
             }, this)));
         
         
@@ -61,10 +61,10 @@ export default class IntroController extends cc.Component {
     touchEnd(event) {
         if(!this.onTouchEnd) return;
         this.removeListeners();
-        this.instructionReleaseSprite.stopAllActions();
-        this.instructionHoldSprite.stopAllActions();
-        this.instructionReleaseSprite.opacity = 0;
-        this.instructionHoldSprite.opacity = 0;
+        this.instructionReleaseSprite.node.stopAllActions();
+        this.instructionHoldSprite.node.stopAllActions();
+        this.instructionReleaseSprite.node.opacity = 0;
+        this.instructionHoldSprite.node.opacity = 0;
         this.playIntro();
     }
         
