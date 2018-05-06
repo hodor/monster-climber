@@ -351,10 +351,10 @@
     "loopSoundStart": 2.73,
     "loopSoundEnd": 3.759,
     "Landing": {
-      "__uuid__": "02b34f44-4b47-4f12-91f8-c42963f1b880"
+      "__uuid__": "a92e67f6-1f78-4cfb-b787-62df94e21ab6"
     },
     "PerfectLanding": {
-      "__uuid__": "2536c4f2-f1fe-49c9-873e-d7769269fff4"
+      "__uuid__": "eb3ea5a9-4ef4-4371-af4d-14a72838b4a2"
     },
     "Fail": {
       "__uuid__": "32cc66a8-d313-4445-94c3-56e5657913a7"
@@ -838,7 +838,7 @@
       "__id__": 20
     },
     "armHitPlayer": {
-      "__uuid__": "f244c390-6d83-4039-9615-33ac11e8e70c"
+      "__uuid__": "7cff42e0-ba02-449d-9ac1-dac04492612a"
     },
     "topOffset": 80
   },
