@@ -26,7 +26,10 @@ export default class Player extends cc.Component {
     maxDistForPerfect = 10;
     @property(cc.AudioClip)
     PressAndHoldSound:cc.AudioClip = null;
-
+    @property(cc.AudioClip)
+    Landing:cc.AudioClip = null;
+    @property(cc.AudioClip)
+    PerfectLanding:cc.AudioClip = null;
     // onLoad () {}
     jumpDuration = 0.4;
     jumpMaxPower = 10;
@@ -121,9 +124,11 @@ export default class Player extends cc.Component {
             score = 0;
         } else {
             if(dist <= this.maxDistForPerfect){
+                this.playPerfectLanding();
                 score = 2 * this.scoreMultiplier;
                 this.scoreMultiplier++;
             } else {
+                this.playLanding();
                 this.scoreMultiplier = 1;
             }
             var ui = cc.instantiate(this.scoreUI);
@@ -139,8 +144,20 @@ export default class Player extends cc.Component {
     }
 
     playPressAndHold(){
-        this.audioSource.stop();
+        this.stopAllSounds();
         this.audioSource.clip = this.PressAndHoldSound;
+        this.audioSource.play();
+    }
+
+    playLanding(){
+        this.stopAllSounds();
+        this.audioSource.clip = this.Landing;
+        this.audioSource.play();
+    }
+
+    playPerfectLanding(){
+        this.stopAllSounds();
+        this.audioSource.clip = this.PerfectLanding;
         this.audioSource.play();
     }
 
