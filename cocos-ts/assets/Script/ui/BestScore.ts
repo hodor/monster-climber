@@ -28,7 +28,7 @@ export default class NewClass extends cc.Component {
                 _this.scoreLabel.string = score;
             })
             .catch(function(){
-                _this.scoreLabel.string = 'Error';
+                _this.scoreLabel.string = '0';
             });
     }
 
