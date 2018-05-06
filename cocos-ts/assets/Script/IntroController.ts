@@ -18,6 +18,11 @@ export default class IntroController extends cc.Component {
  
     @property(World)
     world:World = null;
+    @property(cc.Label)
+    instructionHoldLabel:cc.Label = null;
+
+    @property(cc.Label)
+    instructionReleaseLabel:cc.Label = null;
 
     animation:cc.Animation;
 
@@ -28,36 +33,39 @@ export default class IntroController extends cc.Component {
 
     start () {
         this.addListeners();
-        cc.log(this.onTouchStart);
-        cc.log(this.onTouchEnd);
     }
 
     touchStart(event) {
-        cc.log('touch start');
+        var actionFadeOut = cc.fadeTo(0.4, 0);
+        this.instructionHoldLabel.node.runAction(cc.sequence(actionFadeOut, cc.callFunc(function callBack () {
+                var actionFadeIn = cc.fadeTo(2, 255);
+                this.instructionReleaseLabel.node.runAction(actionFadeIn);    
+            }, this)));
+        
+        
     }
 
     touchEnd(event) {
-        cc.log('touch end');
+        this.instructionReleaseLabel.node.stopAllActions();
+        var actionFadeOut = cc.fadeTo(0.2, 0);
+        this.instructionReleaseLabel.node.runAction(actionFadeOut);
         this.playIntro();
         this.removeListeners();
     }
         
 
     removeListeners () {
-        cc.log('removed listeners');
-        this.node.off(cc.Node.EventType.TOUCH_START, this.touchStart, this.node);
-        this.node.off(cc.Node.EventType.TOUCH_END, this.touchEnd, this.node);
+        this.node.off(cc.Node.EventType.TOUCH_START, this.touchStart, this.node, true);
+        this.node.off(cc.Node.EventType.TOUCH_END, this.touchEnd, this.node, true);
     }
 
     addListeners () {
-        cc.log('add listeners');
         this.onTouchStart = this.node.on(cc.Node.EventType.TOUCH_START, this.touchStart, this, true);
         this.onTouchEnd = this.node.on(cc.Node.EventType.TOUCH_END, this.touchEnd, this, true);
     }
 
 
     playIntro () {
-        cc.log('play intro');
         this.animation = this.getComponent(cc.Animation);
         this.animation.play();
         this.animation.on('finished', this.goToGameState, this);
