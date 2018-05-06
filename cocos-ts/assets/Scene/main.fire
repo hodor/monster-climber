@@ -286,13 +286,13 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 60,
-      "height": 80
+      "width": 0,
+      "height": 0
     },
     "_rotationX": 0,
     "_rotationY": 0,
-    "_scaleX": 1,
-    "_scaleY": 1,
+    "_scaleX": 0.5,
+    "_scaleY": 0.5,
     "_position": {
       "__type__": "cc.Vec2",
       "x": 0,
@@ -304,32 +304,6 @@
     "_globalZOrder": 0,
     "_opacityModifyRGB": false,
     "groupIndex": 0
-  },
-  {
-    "__type__": "cc.Sprite",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 6
-    },
-    "_enabled": true,
-    "_spriteFrame": {
-      "__uuid__": "a7197de7-2514-4257-a99d-d2bc5eb0afb9"
-    },
-    "_type": 1,
-    "_sizeMode": 0,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_atlas": null
   },
   {
     "__type__": "cb5f8OPEV5MtI9wlYLJ4gFc",
@@ -376,6 +350,28 @@
     "_loop": false,
     "playOnLoad": false,
     "preload": false
+  },
+  {
+    "__type__": "dragonBones.ArmatureDisplay",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 6
+    },
+    "_enabled": true,
+    "_armatureName": "Armature",
+    "_animationName": "idle",
+    "playTimes": -1,
+    "_N$dragonAsset": {
+      "__uuid__": "ccde544d-dffd-47fb-bba9-35b8e1a7bdc5"
+    },
+    "_N$dragonAtlasAsset": {
+      "__uuid__": "784b57c8-6921-4b4e-aee8-69fad19ae7e6"
+    },
+    "_N$_defaultArmatureIndex": 0,
+    "_N$_animationIndex": 1,
+    "_N$timeScale": 1,
+    "_N$debugBones": false
   },
   {
     "__type__": "cc.Node",
@@ -968,7 +964,7 @@
     },
     "_enabled": true,
     "player": {
-      "__id__": 8
+      "__id__": 7
     },
     "cameraFollowTimeMS": 0.25,
     "background": {
@@ -1234,7 +1230,7 @@
       }
     ],
     "_tag": -1,
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 52

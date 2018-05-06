@@ -53,6 +53,7 @@ export default class Player extends cc.Component {
     curSquash:number = 1;
 
     public static initialPos: cc.Vec2 = null;
+    initialScale: number = null;
 
     jitterOffset: number = 100;
     lastDistanceJumped: number = 0;
@@ -61,6 +62,7 @@ export default class Player extends cc.Component {
 
     start () {
         Player.initialPos = this.node.getPosition();
+        this.initialScale = this.node.getScale();
         this.jumpMaxPower = cc.winSize.height;
         this.audioSource = this.node.getComponent(cc.AudioSource);
     }
@@ -86,8 +88,8 @@ export default class Player extends cc.Component {
         this.node.stopAllActions();
         this.lastDistanceJumped = this.jumpMaxPower * power;
         var jumpUp = cc.moveBy(0.5, cc.p(0,this.lastDistanceJumped)).easing(cc.easeCubicActionOut());
-        var stretch = cc.scaleTo(this.squashDuration, 1, 1.2);
-        var scaleBack = cc.scaleTo(this.squashDuration, 1, 1);      
+        var stretch = cc.scaleTo(this.squashDuration, this.initialScale, this.initialScale + .2);
+        var scaleBack = cc.scaleTo(this.squashDuration, this.initialScale, this.initialScale);      
         this.node.runAction(cc.sequence(stretch, jumpUp, scaleBack, cc.callFunc(callback, callbackTarget)));
     }
 
