@@ -31,6 +31,8 @@ export default class Player extends cc.Component {
     @property
     loopSoundEnd:number = 3.759;
     @property(cc.AudioClip)
+    NoScoreLanding:cc.AudioClip = null;
+    @property(cc.AudioClip)
     Landing:cc.AudioClip = null;
     @property(cc.AudioClip)
     PerfectLanding:cc.AudioClip = null;
@@ -132,6 +134,7 @@ export default class Player extends cc.Component {
         // Check if we are indeed in the green area
         if(dist > totalSafeHeight/2){
             score = 0;
+            this.playNoScoreLanding();
             this.scoreMultiplier = 1;
         } else {
             if(dist <= this.maxDistForPerfect){
@@ -169,6 +172,12 @@ export default class Player extends cc.Component {
     playPerfectLanding(){
         this.stopAllSounds();
         this.audioSource.clip = this.PerfectLanding;
+        this.audioSource.play();
+    }
+
+    playNoScoreLanding(){
+        this.stopAllSounds();
+        this.audioSource.clip = this.NoScoreLanding;
         this.audioSource.play();
     }
 

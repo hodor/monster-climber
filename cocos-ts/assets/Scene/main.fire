@@ -350,6 +350,9 @@
     },
     "loopSoundStart": 2.73,
     "loopSoundEnd": 3.759,
+    "NoScoreLanding": {
+      "__uuid__": "c4d199a6-4b04-45a5-89b4-7fab34c83604"
+    },
     "Landing": {
       "__uuid__": "a92e67f6-1f78-4cfb-b787-62df94e21ab6"
     },
@@ -1744,9 +1747,6 @@
     },
     "instructionReleaseSprite": {
       "__id__": 50
-    },
-    "monsterGrowl": {
-      "__uuid__": "40093a9e-f501-48e7-8e87-938c868f0cc6"
     }
   },
   {
@@ -1775,9 +1775,6 @@
       "__id__": 36
     },
     "_enabled": true,
-    "_clip": {
-      "__uuid__": "40093a9e-f501-48e7-8e87-938c868f0cc6"
-    },
     "_volume": 1,
     "_mute": false,
     "_loop": false,
