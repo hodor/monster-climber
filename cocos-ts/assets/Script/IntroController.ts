@@ -19,7 +19,10 @@ export default class IntroController extends cc.Component {
     @property(World)
     world:World = null;
     @property(cc.Label)
-    instructionLabel:cc.Label = null;
+    instructionHoldLabel:cc.Label = null;
+
+    @property(cc.Label)
+    instructionReleaseLabel:cc.Label = null;
 
     animation:cc.Animation;
 
@@ -33,20 +36,27 @@ export default class IntroController extends cc.Component {
     }
 
     touchStart(event) {
-        cc.log(this.instructionLabel);
-        this.instructionLabel.string = "Release";
+        var actionFadeOut = cc.fadeTo(0.4, 0);
+        this.instructionHoldLabel.node.runAction(cc.sequence(actionFadeOut, cc.callFunc(function callBack () {
+                var actionFadeIn = cc.fadeTo(2, 255);
+                this.instructionReleaseLabel.node.runAction(actionFadeIn);    
+            }, this)));
+        
+        
     }
 
     touchEnd(event) {
-        this.instructionLabel.string = " ";
+        this.instructionReleaseLabel.node.stopAllActions();
+        var actionFadeOut = cc.fadeTo(0.2, 0);
+        this.instructionReleaseLabel.node.runAction(actionFadeOut);
         this.playIntro();
         this.removeListeners();
     }
         
 
     removeListeners () {
-        this.node.off(cc.Node.EventType.TOUCH_START, this.touchStart, this.node);
-        this.node.off(cc.Node.EventType.TOUCH_END, this.touchEnd, this.node);
+        this.node.off(cc.Node.EventType.TOUCH_START, this.touchStart, this.node, true);
+        this.node.off(cc.Node.EventType.TOUCH_END, this.touchEnd, this.node, true);
     }
 
     addListeners () {
