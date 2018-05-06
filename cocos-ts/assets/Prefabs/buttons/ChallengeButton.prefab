@@ -160,9 +160,9 @@
     "_enabled": true,
     "isAlignOnce": true,
     "_target": null,
-    "_alignFlags": 20,
-    "_left": -50,
-    "_right": 590,
+    "_alignFlags": 44,
+    "_left": 29.5,
+    "_right": 29.5,
     "_top": 0,
     "_bottom": 240.5,
     "_verticalCenter": 0,
@@ -173,7 +173,7 @@
     "_isAbsBottom": true,
     "_isAbsHorizontalCenter": true,
     "_isAbsVerticalCenter": true,
-    "_originalWidth": 100,
+    "_originalWidth": 581,
     "_originalHeight": 0
   },
   {

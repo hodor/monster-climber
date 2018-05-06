@@ -16,6 +16,7 @@ import IntroState from '../FSM/States/Main/IntroState';
 import GameState from '../FSM/States/Main/GameState';
 import WorldWrapper from './WorldWrapper';
 import MonsterFactory from '../monster/MonsterFactory';
+import Instant from '../Instant/Instant';
 
 const {ccclass, property} = cc._decorator;
 
@@ -53,6 +54,9 @@ export default class World extends cc.Component {
     @property(cc.Prefab)
     btnRetry: cc.Prefab = null;
 
+    @property(cc.Prefab)
+    btnChallenge: cc.Prefab = null;
+
     //The main state machine
     mainFSM:StateMachine<MainStates> = null;
     debug:boolean = false;
@@ -64,10 +68,11 @@ export default class World extends cc.Component {
 
     setupMainFSM(){
         this.mainFSM = new StateMachine<MainStates>(MainStates.INTRO, 'IntroState', this, this);
-        this.mainFSM.addTransaction(MainStates.INTRO, MainStates.GAME, 'GameState', this.testFunction);
+        this.mainFSM.addTransaction(MainStates.INTRO, MainStates.GAME, 'GameState');
     }
 
     onLoad () {
+        Instant.init();
         this.input.setWorld(this);
         this.background.setWorld(this);
         this.wrapper = new WorldWrapper(this);
@@ -77,9 +82,6 @@ export default class World extends cc.Component {
     start () {
     }
 
-    testFunction() {
-
-    }
 
     update (dt) {
     }
