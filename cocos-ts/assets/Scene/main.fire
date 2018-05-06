@@ -363,7 +363,7 @@
     },
     "_enabled": true,
     "_armatureName": "Armature",
-    "_animationName": "idle",
+    "_animationName": "",
     "playTimes": -1,
     "_N$dragonAsset": {
       "__uuid__": "ccde544d-dffd-47fb-bba9-35b8e1a7bdc5"
@@ -372,7 +372,7 @@
       "__uuid__": "784b57c8-6921-4b4e-aee8-69fad19ae7e6"
     },
     "_N$_defaultArmatureIndex": 0,
-    "_N$_animationIndex": 1,
+    "_N$_animationIndex": 0,
     "_N$timeScale": 1,
     "_N$debugBones": false
   },

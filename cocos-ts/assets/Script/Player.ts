@@ -55,7 +55,7 @@ export default class Player extends cc.Component {
     public static initialPos: cc.Vec2 = null;
     initialScale: number = null;
 
-    jitterOffset: number = 100;
+    jitterOffset: number = 200;
     lastDistanceJumped: number = 0;
 
     private armatureDisplay: dragonBones.ArmatureDisplay;
@@ -69,7 +69,7 @@ export default class Player extends cc.Component {
         this.armature = this.armatureDisplay.armature();
         this.armatureDisplay.addEventListener(dragonBones.EventObject.COMPLETE, this.dragonBonesComplete, this);
 
-        cc.log('armature: %o', this.armature);
+        this.armatureDisplay.playAnimation('idle', -1);
         this.initialScale = this.node.getScale();
         this.jumpMaxPower = cc.winSize.height;
         this.audioSource = this.node.getComponent(cc.AudioSource);
@@ -77,10 +77,10 @@ export default class Player extends cc.Component {
 
     update(dt) {
         if (this.isSquashing) {
-            if (this.node.scaleY <= this.maxSquash) {
+            if (this.armatureDisplay.animationName == 'pressing') {
                 this.curSquash = this.maxSquash;
                 //make it jitter
-                var newX = Player.initialPos.x + Math.sin(Date.now()) * dt * this.jitterOffset;
+                var newX = Player.initialPos.x + Math.sin(Date.now()*0.1) * dt * this.jitterOffset;
                 this.node.setPositionX(newX);
             }
             if (this.audioSource.isPlaying) {
@@ -101,8 +101,8 @@ export default class Player extends cc.Component {
         var scaleBack = cc.scaleTo(this.squashDuration, this.initialScale, this.initialScale);      
         this.node.runAction(cc.sequence(stretch, jumpUp, scaleBack, cc.callFunc(this.jumpOver, this), cc.callFunc(callback, callbackTarget)));
         */
-        this.node.runAction(cc.sequence(jumpUp, cc.callFunc(this.jumpOver, this), cc.callFunc(callback, callbackTarget)));
         this.armatureDisplay.playAnimation('release', -1);
+        this.node.runAction(cc.sequence(jumpUp, cc.callFunc(this.jumpOver, this), cc.callFunc(callback, callbackTarget)));
     }
 
     jumpOver() {
@@ -116,13 +116,16 @@ export default class Player extends cc.Component {
         //this.squashAnimation = cc.scaleTo(maxHoldTime / 1000, 1, this.maxSquash);
         //this.node.runAction(this.squashAnimation);
       
+        this.armatureDisplay.timeScale = 17 / 48 ;
         this.armatureDisplay.playAnimation('hold', 1);
         this.playPressAndHold();
     }
 
     dragonBonesComplete() {
-        if (this.armatureDisplay.animationName === 'hold')
-            this.armatureDisplay.playAnimation('pressing', -1);
+        if (this.armatureDisplay.animationName === 'hold') {
+            this.armatureDisplay.timeScale = 1;
+            this.armatureDisplay.playAnimation('pressing', 1);
+        }
     }
 
     getDistance() {
