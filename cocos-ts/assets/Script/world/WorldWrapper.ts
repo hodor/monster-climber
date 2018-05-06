@@ -16,6 +16,7 @@ export default class WorldWrapper extends cc.Object {
 
     //Labels
     public labelScore:cc.Label;
+    public labelScoreShadow:cc.Label;
     
     //Buttons
     public btnRetry:cc.Prefab;
@@ -27,8 +28,9 @@ export default class WorldWrapper extends cc.Object {
         this.input = world.input;
         this.background = world.background;
         this.monsterFactory = world.monsterFactory;
-        this.btnRetry = world.btnRetry;
         this.labelScore = world.labelScore;
+        this.labelScoreShadow = world.labelScoreShadow
+        this.btnRetry = world.btnRetry;
         this.btnChallenge = world.btnChallenge;
     }
 }

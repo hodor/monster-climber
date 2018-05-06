@@ -51,6 +51,9 @@ export default class World extends cc.Component {
     @property(cc.Label)
     labelScore: cc.Label = null;
 
+    @property(cc.Label)
+    labelScoreShadow: cc.Label = null;
+
     @property(cc.Prefab)
     btnRetry: cc.Prefab = null;
 
