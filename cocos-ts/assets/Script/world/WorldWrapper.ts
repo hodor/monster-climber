@@ -22,6 +22,10 @@ export default class WorldWrapper extends cc.Object {
     public btnRetry:cc.Prefab;
     public btnChallenge:cc.Prefab;
 
+    //Ui
+    public uiBestScore:cc.Prefab;
+    public uiOverlay:cc.Prefab;
+
     constructor(world:World){
         super();
         this.player = world.player;
@@ -32,5 +36,7 @@ export default class WorldWrapper extends cc.Object {
         this.labelScoreShadow = world.labelScoreShadow
         this.btnRetry = world.btnRetry;
         this.btnChallenge = world.btnChallenge;
+        this.uiBestScore = world.uiBestScore;
+        this.uiOverlay = world.uiOverlay;
     }
 }

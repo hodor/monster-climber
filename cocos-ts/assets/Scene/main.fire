@@ -346,7 +346,7 @@
     },
     "maxDistForPerfect": 20,
     "PressAndHoldSound": {
-      "__uuid__": "3bfd79ef-388d-42ce-8e4c-532e3373c9db"
+      "__uuid__": "42490dae-e341-45ec-a2a1-88a94dea3b70"
     },
     "loopSoundStart": 2.73,
     "loopSoundEnd": 3.759,
@@ -988,6 +988,12 @@
     },
     "btnChallenge": {
       "__uuid__": "b5f69166-443e-4b34-9c90-d8ffca2bfd2a"
+    },
+    "uiBestScore": {
+      "__uuid__": "fd546b1a-1979-47e3-be4c-3cbe5216f42a"
+    },
+    "uiOverlay": {
+      "__uuid__": "a1d6f465-126e-4c1c-b906-4f1c069a6814"
     }
   },
   {

@@ -60,6 +60,12 @@ export default class World extends cc.Component {
     @property(cc.Prefab)
     btnChallenge: cc.Prefab = null;
 
+    @property(cc.Prefab)
+    uiBestScore: cc.Prefab = null;
+
+    @property(cc.Prefab)
+    uiOverlay: cc.Prefab = null;
+
     //The main state machine
     mainFSM:StateMachine<MainStates> = null;
     debug:boolean = false;

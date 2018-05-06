@@ -9,15 +9,22 @@ export default class GameLoseState extends BaseGameState {
     // LIFE-CYCLE CALLBACKS:
 
     // onLoad () {}
+    overlay: cc.Node;
     retryButton: cc.Node;
     challengeButton: cc.Node;
+    uiBestScore: cc.Node;
 
     start() {
         super.start();
+        this.overlay = cc.instantiate(this.w.uiOverlay);
         this.retryButton = cc.instantiate(this.w.btnRetry);
         this.challengeButton = cc.instantiate(this.w.btnChallenge);
+        this.uiBestScore = cc.instantiate(this.w.uiBestScore);
+        this.node.addChild(this.overlay);
+        this.overlay.setPosition(0,0);
         this.node.addChild(this.retryButton);
         this.node.addChild(this.challengeButton);
+        this.node.addChild(this.uiBestScore);
         this.retryButton.on('click', this.retry, this)
         this.challengeButton.on('click', this.challenge, this);
     }
@@ -50,5 +57,9 @@ export default class GameLoseState extends BaseGameState {
         this.retryButton.destroy();
         this.challengeButton.removeFromParent();
         this.challengeButton.destroy();
+        this.uiBestScore.removeFromParent();
+        this.uiBestScore.destroy();
+        this.overlay.removeFromParent();
+        this.overlay.destroy();
     }
 }
