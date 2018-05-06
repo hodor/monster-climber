@@ -24,7 +24,12 @@ export default class Player extends cc.Component {
     scoreUI:cc.Prefab = null;
     @property
     maxDistForPerfect = 10;
-
+    @property(cc.AudioClip)
+    PressAndHoldSound:cc.AudioClip = null;
+    @property(cc.AudioClip)
+    Landing:cc.AudioClip = null;
+    @property(cc.AudioClip)
+    PerfectLanding:cc.AudioClip = null;
     // onLoad () {}
     jumpDuration = 0.4;
     jumpMaxPower = 10;
@@ -44,9 +49,12 @@ export default class Player extends cc.Component {
     jitterOffset: number = 100;
     lastDistanceJumped: number = 0;
 
+    private audioSource:cc.AudioSource = null;
+
     start () {
         Player.initialPos = this.node.getPosition();
         this.jumpMaxPower = cc.winSize.height;
+        this.audioSource = this.node.getComponent(cc.AudioSource);
     }
 
     update (dt) {
@@ -61,6 +69,7 @@ export default class Player extends cc.Component {
     }
 
     jump(power, callback, callbackTarget) {
+        this.stopAllSounds();
         this.isSquashing = false;
         this.node.stopAllActions();
         this.lastDistanceJumped = this.jumpMaxPower * power;
@@ -75,6 +84,7 @@ export default class Player extends cc.Component {
         this.isSquashing = true;
         this.squashAnimation = cc.scaleTo(maxHoldTime/1000, 1, this.maxSquash);
         this.node.runAction(this.squashAnimation);
+        this.playPressAndHold();
     }
 
     getDistance() {
@@ -114,9 +124,11 @@ export default class Player extends cc.Component {
             score = 0;
         } else {
             if(dist <= this.maxDistForPerfect){
+                this.playPerfectLanding();
                 score = 2 * this.scoreMultiplier;
                 this.scoreMultiplier++;
             } else {
+                this.playLanding();
                 this.scoreMultiplier = 1;
             }
             var ui = cc.instantiate(this.scoreUI);
@@ -129,6 +141,28 @@ export default class Player extends cc.Component {
 
     resetScore(){
         this.scoreMultiplier = 1;
+    }
+
+    playPressAndHold(){
+        this.stopAllSounds();
+        this.audioSource.clip = this.PressAndHoldSound;
+        this.audioSource.play();
+    }
+
+    playLanding(){
+        this.stopAllSounds();
+        this.audioSource.clip = this.Landing;
+        this.audioSource.play();
+    }
+
+    playPerfectLanding(){
+        this.stopAllSounds();
+        this.audioSource.clip = this.PerfectLanding;
+        this.audioSource.play();
+    }
+
+    stopAllSounds(){
+        this.audioSource.stop();
     }
 
 }
