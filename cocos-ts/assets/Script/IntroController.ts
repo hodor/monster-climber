@@ -42,9 +42,8 @@ export default class IntroController extends cc.Component {
 
     playGrowl() {
         var waitTime = (Math.random()*2+5);
-        cc.log(waitTime);
-        cc.log('lol');
-        cc.Scheduler(this.playGrowl, waitTime, this, false);
+        console.log(waitTime);
+        setTimeout(this.playGrowl, waitTime);
     }
 
     touchStart(event) {

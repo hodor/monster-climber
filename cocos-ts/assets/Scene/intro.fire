@@ -360,6 +360,7 @@
       "__uuid__": "3bfd79ef-388d-42ce-8e4c-532e3373c9db"
     },
     "loopSoundStart": 0.8,
+    "loopSoundEnd": 3.759,
     "Landing": {
       "__uuid__": "02b34f44-4b47-4f12-91f8-c42963f1b880"
     },
