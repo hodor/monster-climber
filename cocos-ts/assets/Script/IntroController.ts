@@ -24,6 +24,9 @@ export default class IntroController extends cc.Component {
     @property(cc.Label)
     instructionReleaseLabel:cc.Label = null;
 
+    @property(cc.AudioClip)
+    PressAndHoldSound:cc.AudioClip = null;
+
     animation:cc.Animation;
 
     onTouchStart = null;
@@ -33,12 +36,22 @@ export default class IntroController extends cc.Component {
 
     start () {
         this.addListeners();
+        this.playGrowl();
+    }
+
+
+    playGrowl() {
+        var waitTime = (Math.random()*2+5);
+        cc.log(waitTime);
+        cc.log('lol');
+        cc.Scheduler(this.playGrowl, waitTime, this, false);
     }
 
     touchStart(event) {
-        var actionFadeOut = cc.fadeTo(0.4, 0);
+        var actionFadeOut = cc.fadeTo(0.3, 0);
         this.instructionHoldLabel.node.runAction(cc.sequence(actionFadeOut, cc.callFunc(function callBack () {
-                var actionFadeIn = cc.fadeTo(2, 255);
+                if(!this.onTouchEnd) return;
+                var actionFadeIn = cc.fadeTo(0.5, 255);
                 this.instructionReleaseLabel.node.runAction(actionFadeIn);    
             }, this)));
         
@@ -46,17 +59,22 @@ export default class IntroController extends cc.Component {
     }
 
     touchEnd(event) {
-        this.instructionReleaseLabel.node.stopAllActions();
-        var actionFadeOut = cc.fadeTo(0.2, 0);
-        this.instructionReleaseLabel.node.runAction(actionFadeOut);
-        this.playIntro();
+        if(!this.onTouchEnd) return;
         this.removeListeners();
+        this.instructionReleaseLabel.node.stopAllActions();
+        this.instructionHoldLabel.node.stopAllActions();
+        this.instructionReleaseLabel.node.opacity = 0;
+        this.instructionHoldLabel.node.opacity = 0;
+        this.playIntro();
     }
         
 
     removeListeners () {
+        cc.log('removed');
         this.node.off(cc.Node.EventType.TOUCH_START, this.touchStart, this.node, true);
         this.node.off(cc.Node.EventType.TOUCH_END, this.touchEnd, this.node, true);
+        this.onTouchStart = null;
+        this.onTouchEnd = null;
     }
 
     addListeners () {
