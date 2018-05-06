@@ -77,9 +77,9 @@ export default class Instant extends cc.Object {
         if (typeof FBInstant === 'undefined') return;
         FBInstant.updateAsync({
             action: 'CUSTOM',
-            cta: 'Climb!',
+            cta: 'Play Now',
             image: ShareImage.Base64,
-            text: "Reach the monster's head",
+            text: "Climb this monster with me",
             template: '',
             strategy: 'IMMEDIATE',
             notification: 'NO_PUSH',
