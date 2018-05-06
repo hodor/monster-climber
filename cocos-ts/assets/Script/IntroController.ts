@@ -36,10 +36,18 @@ export default class IntroController extends cc.Component {
 
     private growlAudioSource:cc.AudioSource = null;
     private windAudioSource:cc.AudioSource = null;
+
+    private armatureDisplay: dragonBones.ArmatureDisplay;
+    private armature: dragonBones.Armature;
     
     //onLoad () { };
     
     start () {
+        this.armatureDisplay = this.node.getComponentInChildren(dragonBones.ArmatureDisplay);
+        this.armature = this.armatureDisplay.armature();
+
+        this.armatureDisplay.timeScale = 0.01;
+
         this.growlAudioSource = this.node.getComponent(cc.AudioSource);
         this.windAudioSource = this.node.getComponentInChildren(cc.AudioSource);
         this.addListeners();
@@ -62,6 +70,8 @@ export default class IntroController extends cc.Component {
         var actionFadeOut = cc.fadeTo(0.3, 0);
         var FadeInFadeOutComp = this.node.getComponentInChildren(FadeInFadeOut);
         FadeInFadeOutComp.destroy();
+        this.armatureDisplay.timeScale = 1;
+        this.armatureDisplay.playAnimation('hold', 1);
         this.instructionHoldSprite.node.runAction(cc.sequence(actionFadeOut, cc.callFunc(function callBack () {
                 if(!this.onTouchEnd) return;
                 var actionFadeIn = cc.fadeTo(0.5, 255);
@@ -74,6 +84,7 @@ export default class IntroController extends cc.Component {
     touchEnd(event) {
         if(!this.onTouchEnd) return;
         this.removeListeners();
+        this.armatureDisplay.playAnimation('release',1);
         this.instructionReleaseSprite.node.stopAllActions();
         this.instructionHoldSprite.node.stopAllActions();
         this.instructionReleaseSprite.node.opacity = 0;
