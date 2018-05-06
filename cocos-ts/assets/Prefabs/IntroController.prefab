@@ -162,7 +162,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "49114e00-aff6-4a21-be9e-d9ea6c07562c"
     },
     "fileId": "16aXA8+a1LI7WwgHv7sQtW",
     "sync": false
@@ -253,14 +253,14 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "49114e00-aff6-4a21-be9e-d9ea6c07562c"
     },
     "fileId": "68M5iNR8pBbboInUe+61DF",
     "sync": false
   },
   {
     "__type__": "cc.Node",
-    "_name": "Instructions_hold",
+    "_name": "presshold",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -293,8 +293,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 82,
-      "height": 40
+      "width": 534,
+      "height": 32
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -302,8 +302,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
+      "x": -320,
+      "y": -480
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -313,26 +313,30 @@
     "groupIndex": 0
   },
   {
-    "__type__": "cc.Label",
+    "__type__": "cc.Sprite",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 8
     },
     "_enabled": true,
-    "_useOriginalSize": false,
-    "_actualFontSize": 40,
-    "_fontSize": 40,
-    "_lineHeight": 40,
-    "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
-    "_spacingX": 0,
-    "_N$string": "Hold",
-    "_N$horizontalAlign": 1,
-    "_N$verticalAlign": 1,
-    "_N$fontFamily": "Arial",
-    "_N$overflow": 0
+    "_spriteFrame": {
+      "__uuid__": "3d2873d3-76aa-4914-b600-6159fdf6cf96"
+    },
+    "_type": 0,
+    "_sizeMode": 1,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_atlas": null
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -340,14 +344,14 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "49114e00-aff6-4a21-be9e-d9ea6c07562c"
     },
-    "fileId": "60bEI8VSdEDb3EERbDYPvf",
+    "fileId": "585QF+4qhH+4smt0dfxwxw",
     "sync": false
   },
   {
     "__type__": "cc.Node",
-    "_name": "Instructions_release",
+    "_name": "release",
     "_objFlags": 0,
     "_parent": {
       "__id__": 1
@@ -364,7 +368,7 @@
       "__id__": 13
     },
     "_id": "",
-    "_opacity": 0,
+    "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
       "r": 255,
@@ -380,8 +384,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 147,
-      "height": 40
+      "width": 296,
+      "height": 32
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -400,26 +404,30 @@
     "groupIndex": 0
   },
   {
-    "__type__": "cc.Label",
+    "__type__": "cc.Sprite",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 11
     },
     "_enabled": true,
-    "_useOriginalSize": false,
-    "_actualFontSize": 40,
-    "_fontSize": 40,
-    "_lineHeight": 40,
-    "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
-    "_spacingX": 0,
-    "_N$string": "Release",
-    "_N$horizontalAlign": 1,
-    "_N$verticalAlign": 1,
-    "_N$fontFamily": "Arial",
-    "_N$overflow": 0
+    "_spriteFrame": {
+      "__uuid__": "87031a6d-fa83-4aff-9542-3de02b83f109"
+    },
+    "_type": 0,
+    "_sizeMode": 1,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_atlas": null
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -427,9 +435,9 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "49114e00-aff6-4a21-be9e-d9ea6c07562c"
     },
-    "fileId": "845QABk1pERr2+dJ8KKfqj",
+    "fileId": "4dONb++R5E/Z8Ak+krW9YW",
     "sync": false
   },
   {
@@ -441,11 +449,14 @@
     },
     "_enabled": true,
     "world": null,
-    "instructionHoldLabel": {
-      "__id__": 9
+    "instructionHoldSprite": {
+      "__id__": 8
     },
-    "instructionReleaseLabel": {
-      "__id__": 12
+    "instructionReleaseSprite": {
+      "__id__": 11
+    },
+    "PressAndHoldSound": {
+      "__uuid__": "40093a9e-f501-48e7-8e87-938c868f0cc6"
     }
   },
   {
@@ -472,7 +483,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "49114e00-aff6-4a21-be9e-d9ea6c07562c"
     },
     "fileId": "b9TTMOHWRJe6rsHnShXy18",
     "sync": false

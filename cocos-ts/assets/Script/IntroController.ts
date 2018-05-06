@@ -18,11 +18,11 @@ export default class IntroController extends cc.Component {
  
     @property(World)
     world:World = null;
-    @property(cc.Label)
-    instructionHoldLabel:cc.Label = null;
+    @property(cc.Sprite)
+    instructionHoldSprite:cc.Sprite = null;
 
-    @property(cc.Label)
-    instructionReleaseLabel:cc.Label = null;
+    @property(cc.Sprite)
+    instructionReleaseSprite:cc.Sprite = null;
 
     @property(cc.AudioClip)
     PressAndHoldSound:cc.AudioClip = null;
@@ -49,10 +49,10 @@ export default class IntroController extends cc.Component {
 
     touchStart(event) {
         var actionFadeOut = cc.fadeTo(0.3, 0);
-        this.instructionHoldLabel.node.runAction(cc.sequence(actionFadeOut, cc.callFunc(function callBack () {
+        this.instructionHoldSprite.runAction(cc.sequence(actionFadeOut, cc.callFunc(function callBack () {
                 if(!this.onTouchEnd) return;
                 var actionFadeIn = cc.fadeTo(0.5, 255);
-                this.instructionReleaseLabel.node.runAction(actionFadeIn);    
+                this.instructionReleaseSprite.runAction(actionFadeIn);    
             }, this)));
         
         
@@ -61,10 +61,10 @@ export default class IntroController extends cc.Component {
     touchEnd(event) {
         if(!this.onTouchEnd) return;
         this.removeListeners();
-        this.instructionReleaseLabel.node.stopAllActions();
-        this.instructionHoldLabel.node.stopAllActions();
-        this.instructionReleaseLabel.node.opacity = 0;
-        this.instructionHoldLabel.node.opacity = 0;
+        this.instructionReleaseSprite.stopAllActions();
+        this.instructionHoldSprite.stopAllActions();
+        this.instructionReleaseSprite.opacity = 0;
+        this.instructionHoldSprite.opacity = 0;
         this.playIntro();
     }
         
