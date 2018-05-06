@@ -4,6 +4,7 @@ import Player from "../../../Player";
 import PressAndHolder from "../../../PressAndHolder";
 import InfiniteVerticalBg from "../../../background/InfiniteVerticalBg";
 import StateMachine from "../../StateMachine";
+import Instant from "../../../Instant/Instant";
 
 const {ccclass, property} = cc._decorator;
 
@@ -53,7 +54,10 @@ export default class GameState extends StateComponent {
 
     updateScore(){
         this.score += this.world.player.handleScore(this.world.monsterFactory.totalSafeHeight);
+        Instant.SaveHighscore(this.score);
+        
         this.world.labelScore.string = this.score.toFixed(0);
+        this.world.labelScoreShadow.string = this.score.toFixed(0);
     }
 
     handleLose(){
@@ -66,5 +70,6 @@ export default class GameState extends StateComponent {
         this.score = 0;
         this.world.player.resetScore();
         this.world.labelScore.string = this.score.toFixed(0);
+        this.world.labelScoreShadow.string = this.score.toFixed(0);
     }
 }

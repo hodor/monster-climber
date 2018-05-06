@@ -22,6 +22,8 @@ export default class Instant extends cc.Object {
     public static Locale: string;
     public static Platform: string;
     public static SDKVersion: string;
+
+    private static readonly LBGlobal: string = 'global';
     public static init() {
         if (typeof FBInstant === 'undefined') {
             return;
@@ -55,15 +57,15 @@ export default class Instant extends cc.Object {
     }
 
     public static ChooseContext(callback: Function, target: Object) {
-        if (typeof FBInstant === 'undefined')return;
+        if (typeof FBInstant === 'undefined') return;
         FBInstant.context
             .chooseAsync()
             .then(function () {
                 Instant.ContextID = FBInstant.context.getID();
                 Instant.ContextType = FBInstant.context.getType();
                 callback.call(target, null);
-            }).catch(function (error){
-                if(error.code == "SAME_CONTEXT"){
+            }).catch(function (error) {
+                if (error.code == "SAME_CONTEXT") {
                     callback.call(target, null);
                 } else {
                     callback.call(target, error);
@@ -71,13 +73,13 @@ export default class Instant extends cc.Object {
             });
     }
 
-    public static PostMessage(callback:Function, target:Object){
-        if(typeof FBInstant === 'undefined') return;
+    public static PostMessage(callback: Function, target: Object) {
+        if (typeof FBInstant === 'undefined') return;
         FBInstant.updateAsync({
             action: 'CUSTOM',
-            cta: 'Climb!',
+            cta: 'Play Now',
             image: ShareImage.Base64,
-            text: "Reach the monster's head",
+            text: "Climb this monster with me",
             template: '',
             strategy: 'IMMEDIATE',
             notification: 'NO_PUSH',
@@ -85,6 +87,36 @@ export default class Instant extends cc.Object {
             callback.call(target, null);
         }).catch(function (error) {
             callback.call(target, error);
+        });
+    }
+
+    public static SaveHighscore(score: number) {
+        if (typeof FBInstant === 'undefined') return;
+
+        FBInstant.getLeaderboardAsync(Instant.LBGlobal)
+            .then(function (leaderboard) {
+                return leaderboard.setScoreAsync(score);
+            });
+    }
+
+    public static GetHighscore() {
+
+        return new Promise((resolve, reject) => {
+            if (typeof FBInstant === 'undefined') {
+                reject('FBInstant undefined');
+                return;
+            }
+
+            FBInstant.getLeaderboardAsync(this.LBGlobal)
+                .then(function (leaderboard) {
+                    return leaderboard.getPlayerEntryAsync();
+                })
+                .then(function (entry) {
+                    resolve(entry.getScore());
+                })
+                .catch(function (err) {
+                    reject(err);
+                });
         });
     }
     /*
