@@ -19,6 +19,7 @@ export default class WorldWrapper extends cc.Object {
     
     //Buttons
     public btnRetry:cc.Prefab;
+    public btnChallenge:cc.Prefab;
 
     constructor(world:World){
         super();
@@ -28,5 +29,6 @@ export default class WorldWrapper extends cc.Object {
         this.monsterFactory = world.monsterFactory;
         this.btnRetry = world.btnRetry;
         this.labelScore = world.labelScore;
+        this.btnChallenge = world.btnChallenge;
     }
 }
