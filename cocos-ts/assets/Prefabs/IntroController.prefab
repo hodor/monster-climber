@@ -145,7 +145,7 @@
     },
     "_enabled": true,
     "_clip": {
-      "__uuid__": "5f955383-b751-401c-9668-b31e3488300b"
+      "__uuid__": "e8424e48-2c13-447b-b091-cb97dd5c3b60"
     },
     "_volume": 0.8,
     "_mute": false,
@@ -542,9 +542,6 @@
     },
     "instructionReleaseSprite": {
       "__id__": 15
-    },
-    "monsterGrowl": {
-      "__uuid__": "40093a9e-f501-48e7-8e87-938c868f0cc6"
     }
   },
   {
@@ -573,9 +570,6 @@
       "__id__": 1
     },
     "_enabled": true,
-    "_clip": {
-      "__uuid__": "40093a9e-f501-48e7-8e87-938c868f0cc6"
-    },
     "_volume": 1,
     "_mute": false,
     "_loop": false,
