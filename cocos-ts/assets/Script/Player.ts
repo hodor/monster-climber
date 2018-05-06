@@ -30,6 +30,8 @@ export default class Player extends cc.Component {
     Landing:cc.AudioClip = null;
     @property(cc.AudioClip)
     PerfectLanding:cc.AudioClip = null;
+    @property(cc.AudioClip)
+    Fail:cc.AudioClip = null;
     // onLoad () {}
     jumpDuration = 0.4;
     jumpMaxPower = 10;
@@ -158,6 +160,12 @@ export default class Player extends cc.Component {
     playPerfectLanding(){
         this.stopAllSounds();
         this.audioSource.clip = this.PerfectLanding;
+        this.audioSource.play();
+    }
+
+    playDeath(){
+        this.stopAllSounds();
+        this.audioSource.clip = this.Fail;
         this.audioSource.play();
     }
 

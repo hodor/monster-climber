@@ -25,8 +25,10 @@ export default class GameHandHitState extends BaseGameState {
             this.w.monsterFactory.isPointSafe(landed)) {
             this.changeState(GameStates.WIN);
 
-        } else
+        } else {
+            this.w.player.playDeath();
             this.changeState(GameStates.LOSE);
+        }
 
     }
 
