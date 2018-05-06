@@ -17,10 +17,10 @@
         "__id__": 2
       },
       {
-        "__id__": 36
+        "__id__": 37
       },
       {
-        "__id__": 33
+        "__id__": 34
       }
     ],
     "_tag": -1,
@@ -72,7 +72,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 35
+        "__id__": 36
       }
     ],
     "_prefab": null,
@@ -237,14 +237,14 @@
         "__id__": 13
       },
       {
-        "__id__": 28
+        "__id__": 29
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 31
+        "__id__": 32
       }
     ],
     "_prefab": null,
@@ -455,11 +455,15 @@
     "PressAndHoldSound": {
       "__uuid__": "3bfd79ef-388d-42ce-8e4c-532e3373c9db"
     },
+    "loopSoundStart": 0.8,
     "Landing": {
       "__uuid__": "02b34f44-4b47-4f12-91f8-c42963f1b880"
     },
     "PerfectLanding": {
       "__uuid__": "2536c4f2-f1fe-49c9-873e-d7769269fff4"
+    },
+    "Fail": {
+      "__uuid__": "32cc66a8-d313-4445-94c3-56e5657913a7"
     }
   },
   {
@@ -502,10 +506,13 @@
     "_components": [
       {
         "__id__": 26
+      },
+      {
+        "__id__": 27
       }
     ],
     "_prefab": {
-      "__id__": 27
+      "__id__": 28
     },
     "_id": "d43Y+y6iBAM5yvCEMZvfQJ",
     "_opacity": 255,
@@ -936,7 +943,24 @@
     "hint": {
       "__id__": 23
     },
+    "armHitPlayer": {
+      "__uuid__": "f244c390-6d83-4039-9615-33ac11e8e70c"
+    },
     "topOffset": 80
+  },
+  {
+    "__type__": "cc.AudioSource",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 13
+    },
+    "_enabled": true,
+    "_volume": 1,
+    "_mute": false,
+    "_loop": false,
+    "playOnLoad": false,
+    "preload": false
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -959,10 +983,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 29
+        "__id__": 30
       },
       {
-        "__id__": 30
+        "__id__": 31
       }
     ],
     "_prefab": null,
@@ -1007,7 +1031,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 28
+      "__id__": 29
     },
     "_enabled": true,
     "isAlignOnce": true,
@@ -1033,7 +1057,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 28
+      "__id__": 29
     },
     "_enabled": true,
     "maxPressTimeMS": 2000
@@ -1054,13 +1078,13 @@
       "__id__": 8
     },
     "input": {
-      "__id__": 30
+      "__id__": 31
     },
     "monsterFactory": {
       "__id__": 26
     },
     "labelScore": {
-      "__id__": 32
+      "__id__": 33
     },
     "btnRetry": {
       "__uuid__": "21eeb1d0-786e-48f8-b42f-837378fc14f2"
@@ -1074,7 +1098,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 33
+      "__id__": 34
     },
     "_enabled": true,
     "_useOriginalSize": false,
@@ -1105,10 +1129,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 32
+        "__id__": 33
       },
       {
-        "__id__": 34
+        "__id__": 35
       }
     ],
     "_prefab": null,
@@ -1138,7 +1162,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 37.5,
+      "x": 36,
       "y": 900
     },
     "_skewX": 0,
@@ -1153,13 +1177,13 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 33
+      "__id__": 34
     },
     "_enabled": true,
     "isAlignOnce": true,
     "_target": null,
     "_alignFlags": 9,
-    "_left": 21,
+    "_left": 19.5,
     "_right": 0,
     "_top": 30,
     "_bottom": 0,
@@ -1199,26 +1223,26 @@
     },
     "_children": [
       {
-        "__id__": 37
+        "__id__": 38
       },
       {
-        "__id__": 39
+        "__id__": 40
       },
       {
-        "__id__": 41
+        "__id__": 42
       },
       {
-        "__id__": 43
+        "__id__": 44
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 45
+        "__id__": 46
       },
       {
-        "__id__": 46
+        "__id__": 47
       }
     ],
     "_prefab": null,
@@ -1263,14 +1287,14 @@
     "_name": "intro",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 36
+      "__id__": 37
     },
     "_children": [],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 38
+        "__id__": 39
       }
     ],
     "_prefab": null,
@@ -1315,7 +1339,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 37
+      "__id__": 38
     },
     "_enabled": true,
     "_spriteFrame": {
@@ -1341,14 +1365,14 @@
     "_name": "argo_intro",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 36
+      "__id__": 37
     },
     "_children": [],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 40
+        "__id__": 41
       }
     ],
     "_prefab": null,
@@ -1378,7 +1402,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -239,
+      "x": 216,
       "y": -389
     },
     "_skewX": 0,
@@ -1393,7 +1417,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 39
+      "__id__": 40
     },
     "_enabled": true,
     "_spriteFrame": {
@@ -1419,14 +1443,14 @@
     "_name": "Instructions_hold",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 36
+      "__id__": 37
     },
     "_children": [],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 42
+        "__id__": 43
       }
     ],
     "_prefab": null,
@@ -1471,7 +1495,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 41
+      "__id__": 42
     },
     "_enabled": true,
     "_useOriginalSize": false,
@@ -1493,14 +1517,14 @@
     "_name": "Instructions_release",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 36
+      "__id__": 37
     },
     "_children": [],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 44
+        "__id__": 45
       }
     ],
     "_prefab": null,
@@ -1545,7 +1569,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 43
+      "__id__": 44
     },
     "_enabled": true,
     "_useOriginalSize": false,
@@ -1567,17 +1591,17 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 36
+      "__id__": 37
     },
     "_enabled": true,
     "world": {
-      "__id__": 31
+      "__id__": 32
     },
     "instructionHoldLabel": {
-      "__id__": 42
+      "__id__": 43
     },
     "instructionReleaseLabel": {
-      "__id__": 44
+      "__id__": 45
     }
   },
   {
@@ -1585,7 +1609,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 36
+      "__id__": 37
     },
     "_enabled": true,
     "_defaultClip": {

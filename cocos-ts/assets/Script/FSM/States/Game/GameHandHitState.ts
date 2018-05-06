@@ -26,10 +26,11 @@ export default class GameHandHitState extends BaseGameState {
             this.changeState(GameStates.WIN);
 
         } else {
-            this.w.player.playDeath();
+            this.w.monsterFactory.playArmKilled();
+        //    this.w.player.playDeath();
             this.changeState(GameStates.LOSE);
         }
-
     }
+
 
 }
