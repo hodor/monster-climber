@@ -24,6 +24,8 @@ export default class Player extends cc.Component {
     scoreUI:cc.Prefab = null;
     @property
     maxDistForPerfect = 10;
+    @property(cc.AudioClip)
+    PressAndHoldSound:cc.AudioClip = null;
 
     // onLoad () {}
     jumpDuration = 0.4;
@@ -44,9 +46,12 @@ export default class Player extends cc.Component {
     jitterOffset: number = 100;
     lastDistanceJumped: number = 0;
 
+    private audioSource:cc.AudioSource = null;
+
     start () {
         Player.initialPos = this.node.getPosition();
         this.jumpMaxPower = cc.winSize.height;
+        this.audioSource = this.node.getComponent(cc.AudioSource);
     }
 
     update (dt) {
@@ -61,6 +66,7 @@ export default class Player extends cc.Component {
     }
 
     jump(power, callback, callbackTarget) {
+        this.stopAllSounds();
         this.isSquashing = false;
         this.node.stopAllActions();
         this.lastDistanceJumped = this.jumpMaxPower * power;
@@ -75,6 +81,7 @@ export default class Player extends cc.Component {
         this.isSquashing = true;
         this.squashAnimation = cc.scaleTo(maxHoldTime/1000, 1, this.maxSquash);
         this.node.runAction(this.squashAnimation);
+        this.playPressAndHold();
     }
 
     getDistance() {
@@ -129,6 +136,16 @@ export default class Player extends cc.Component {
 
     resetScore(){
         this.scoreMultiplier = 1;
+    }
+
+    playPressAndHold(){
+        this.audioSource.stop();
+        this.audioSource.clip = this.PressAndHoldSound;
+        this.audioSource.play();
+    }
+
+    stopAllSounds(){
+        this.audioSource.stop();
     }
 
 }
