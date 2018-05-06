@@ -35,10 +35,13 @@
       },
       {
         "__id__": 15
+      },
+      {
+        "__id__": 16
       }
     ],
     "_prefab": {
-      "__id__": 16
+      "__id__": 17
     },
     "_id": "",
     "_opacity": 255,
@@ -455,7 +458,7 @@
     "instructionReleaseSprite": {
       "__id__": 12
     },
-    "PressAndHoldSound": {
+    "monsterGrowl": {
       "__uuid__": "40093a9e-f501-48e7-8e87-938c868f0cc6"
     }
   },
@@ -476,6 +479,23 @@
       }
     ],
     "playOnLoad": false
+  },
+  {
+    "__type__": "cc.AudioSource",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "_clip": {
+      "__uuid__": "40093a9e-f501-48e7-8e87-938c868f0cc6"
+    },
+    "_volume": 1,
+    "_mute": false,
+    "_loop": false,
+    "playOnLoad": false,
+    "preload": true
   },
   {
     "__type__": "cc.PrefabInfo",
