@@ -114,7 +114,7 @@ export default class Player extends cc.Component {
             score = 0;
         } else {
             if(dist <= this.maxDistForPerfect){
-                score = Math.pow(2, this.scoreMultiplier);
+                score = 2 * this.scoreMultiplier;
                 this.scoreMultiplier++;
             } else {
                 this.scoreMultiplier = 1;

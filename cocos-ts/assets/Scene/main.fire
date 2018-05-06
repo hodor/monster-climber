@@ -492,8 +492,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 40,
-      "height": 60
+      "width": 60,
+      "height": 80
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -1038,6 +1038,9 @@
     },
     "btnRetry": {
       "__uuid__": "21eeb1d0-786e-48f8-b42f-837378fc14f2"
+    },
+    "btnChallenge": {
+      "__uuid__": "b5f69166-443e-4b34-9c90-d8ffca2bfd2a"
     }
   },
   {
