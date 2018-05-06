@@ -379,12 +379,12 @@
     "_cascadeOpacityEnabled": true,
     "_anchorPoint": {
       "__type__": "cc.Vec2",
-      "x": 0,
+      "x": 1,
       "y": 0.5
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 111,
+      "width": 66,
       "height": 40
     },
     "_rotationX": 0,
@@ -393,7 +393,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 60,
+      "x": 225,
       "y": 0
     },
     "_skewX": 0,
@@ -416,11 +416,13 @@
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
+    "_N$file": {
+      "__uuid__": "d789fcf0-d93a-4b7a-860f-778290250221"
+    },
+    "_isSystemFontUsed": false,
     "_spacingX": 0,
-    "_N$string": "99999",
-    "_N$horizontalAlign": 1,
+    "_N$string": "999",
+    "_N$horizontalAlign": 2,
     "_N$verticalAlign": 1,
     "_N$fontFamily": "Arial",
     "_N$overflow": 0
