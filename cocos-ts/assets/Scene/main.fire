@@ -1230,7 +1230,7 @@
       }
     ],
     "_tag": -1,
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 52
@@ -1743,6 +1743,9 @@
     },
     "instructionReleaseSprite": {
       "__id__": 50
+    },
+    "monsterGrowl": {
+      "__uuid__": "346f554c-9d3e-4a94-9abe-9bbb3d2d4a6d"
     }
   },
   {
