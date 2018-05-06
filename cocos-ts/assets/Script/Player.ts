@@ -124,6 +124,7 @@ export default class Player extends cc.Component {
         // Check if we are indeed in the green area
         if(dist > totalSafeHeight/2){
             score = 0;
+            this.scoreMultiplier = 1;
         } else {
             if(dist <= this.maxDistForPerfect){
                 this.playPerfectLanding();
