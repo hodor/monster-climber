@@ -17,6 +17,9 @@
         "__id__": 2
       },
       {
+        "__id__": 58
+      },
+      {
         "__id__": 34
       },
       {
@@ -72,7 +75,7 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 60
+        "__id__": 57
       }
     ],
     "_prefab": null,
@@ -360,7 +363,7 @@
     },
     "_enabled": true,
     "_armatureName": "Armature",
-    "_animationName": "idle",
+    "_animationName": "",
     "playTimes": -1,
     "_N$dragonAsset": {
       "__uuid__": "ccde544d-dffd-47fb-bba9-35b8e1a7bdc5"
@@ -369,7 +372,7 @@
       "__uuid__": "784b57c8-6921-4b4e-aee8-69fad19ae7e6"
     },
     "_N$_defaultArmatureIndex": 0,
-    "_N$_animationIndex": 1,
+    "_N$_animationIndex": 0,
     "_N$timeScale": 1,
     "_N$debugBones": false
   },
@@ -1227,26 +1230,23 @@
       },
       {
         "__id__": 50
-      },
-      {
-        "__id__": 53
       }
     ],
     "_tag": -1,
     "_active": true,
     "_components": [
       {
-        "__id__": 56
+        "__id__": 53
       },
       {
-        "__id__": 57
+        "__id__": 54
       },
       {
-        "__id__": 58
+        "__id__": 55
       }
     ],
     "_prefab": {
-      "__id__": 59
+      "__id__": 56
     },
     "_id": "fendniEZ5BwqK6vw9kWtI4",
     "_opacity": 255,
@@ -1744,162 +1744,6 @@
     "sync": false
   },
   {
-    "__type__": "cc.Node",
-    "_name": "Snow",
-    "_objFlags": 0,
-    "_parent": {
-      "__id__": 36
-    },
-    "_children": [],
-    "_tag": -1,
-    "_active": true,
-    "_components": [
-      {
-        "__id__": 54
-      }
-    ],
-    "_prefab": {
-      "__id__": 55
-    },
-    "_id": "63Hi1e5MlEDo+g7j2r5+H8",
-    "_opacity": 255,
-    "_color": {
-      "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
-      "a": 255
-    },
-    "_cascadeOpacityEnabled": true,
-    "_anchorPoint": {
-      "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
-    },
-    "_contentSize": {
-      "__type__": "cc.Size",
-      "width": 0,
-      "height": 0
-    },
-    "_rotationX": 0,
-    "_rotationY": 0,
-    "_scaleX": 1,
-    "_scaleY": 1,
-    "_position": {
-      "__type__": "cc.Vec2",
-      "x": 138.9,
-      "y": 679
-    },
-    "_skewX": 0,
-    "_skewY": 0,
-    "_localZOrder": 0,
-    "_globalZOrder": 0,
-    "_opacityModifyRGB": false,
-    "groupIndex": 0
-  },
-  {
-    "__type__": "cc.ParticleSystem",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 53
-    },
-    "_enabled": true,
-    "_custom": true,
-    "_texture": {
-      "__uuid__": "345cb78b-b53d-433d-bbca-461a3a0cd2ef"
-    },
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 1,
-    "playOnLoad": true,
-    "_autoRemoveOnFinish": false,
-    "_totalParticles": 200,
-    "_duration": -1,
-    "_emissionRate": 30,
-    "_life": 3,
-    "_lifeVar": 0,
-    "_startColor": {
-      "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
-      "a": 255
-    },
-    "_startColorVar": {
-      "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
-      "b": 0,
-      "a": 255
-    },
-    "_endColor": {
-      "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
-      "a": 149
-    },
-    "_endColorVar": {
-      "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
-      "b": 0,
-      "a": 0
-    },
-    "_angle": 360,
-    "_angleVar": 20,
-    "_startSize": 15,
-    "_startSizeVar": 20,
-    "_endSize": 15,
-    "_endSizeVar": 0,
-    "_startSpin": 0,
-    "_startSpinVar": 0,
-    "_endSpin": 0,
-    "_endSpinVar": 0,
-    "_sourcePos": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_posVar": {
-      "__type__": "cc.Vec2",
-      "x": 420,
-      "y": 0
-    },
-    "_positionType": 0,
-    "_emitterMode": 0,
-    "_gravity": {
-      "__type__": "cc.Vec2",
-      "x": -100,
-      "y": -400
-    },
-    "_speed": 20,
-    "_speedVar": 20,
-    "_tangentialAccel": 0,
-    "_tangentialAccelVar": 0,
-    "_radialAccel": 0,
-    "_radialAccelVar": 0,
-    "_rotationIsDir": false,
-    "_startRadius": 0,
-    "_startRadiusVar": 0,
-    "_endRadius": 500,
-    "_endRadiusVar": 500,
-    "_rotatePerS": 0,
-    "_rotatePerSVar": 0,
-    "_N$preview": true
-  },
-  {
-    "__type__": "cc.PrefabInfo",
-    "root": {
-      "__id__": 36
-    },
-    "asset": {
-      "__uuid__": "49114e00-aff6-4a21-be9e-d9ea6c07562c"
-    },
-    "fileId": "b8wVDaJp9JQbLFeC6QY2/s",
-    "sync": false
-  },
-  {
     "__type__": "e24bewV4t9PhIMdLTm1KF+4",
     "_name": "",
     "_objFlags": 0,
@@ -1981,5 +1825,148 @@
     },
     "_fitWidth": false,
     "_fitHeight": true
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Snow",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 1
+    },
+    "_children": [],
+    "_tag": -1,
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 59
+      }
+    ],
+    "_prefab": null,
+    "_id": "63Hi1e5MlEDo+g7j2r5+H8",
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_cascadeOpacityEnabled": true,
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 0,
+      "height": 0
+    },
+    "_rotationX": 0,
+    "_rotationY": 0,
+    "_scaleX": 1,
+    "_scaleY": 1,
+    "_position": {
+      "__type__": "cc.Vec2",
+      "x": 458.9,
+      "y": 1159
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_localZOrder": 0,
+    "_globalZOrder": 0,
+    "_opacityModifyRGB": false,
+    "groupIndex": 0
+  },
+  {
+    "__type__": "cc.ParticleSystem",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 58
+    },
+    "_enabled": true,
+    "_custom": true,
+    "_texture": {
+      "__uuid__": "2a805566-fa3e-4621-89e5-1c4047d4d4a8"
+    },
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 1,
+    "playOnLoad": true,
+    "_autoRemoveOnFinish": false,
+    "_totalParticles": 200,
+    "_duration": -1,
+    "_emissionRate": 30,
+    "_life": 3,
+    "_lifeVar": 0,
+    "_startColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_startColorVar": {
+      "__type__": "cc.Color",
+      "r": 0,
+      "g": 0,
+      "b": 0,
+      "a": 255
+    },
+    "_endColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 149
+    },
+    "_endColorVar": {
+      "__type__": "cc.Color",
+      "r": 0,
+      "g": 0,
+      "b": 0,
+      "a": 0
+    },
+    "_angle": 360,
+    "_angleVar": 20,
+    "_startSize": 15,
+    "_startSizeVar": 20,
+    "_endSize": 15,
+    "_endSizeVar": 0,
+    "_startSpin": 0,
+    "_startSpinVar": 0,
+    "_endSpin": 0,
+    "_endSpinVar": 0,
+    "_sourcePos": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_posVar": {
+      "__type__": "cc.Vec2",
+      "x": 420,
+      "y": 0
+    },
+    "_positionType": 0,
+    "_emitterMode": 0,
+    "_gravity": {
+      "__type__": "cc.Vec2",
+      "x": -100,
+      "y": -400
+    },
+    "_speed": 20,
+    "_speedVar": 20,
+    "_tangentialAccel": 0,
+    "_tangentialAccelVar": 0,
+    "_radialAccel": 0,
+    "_radialAccelVar": 0,
+    "_rotationIsDir": false,
+    "_startRadius": 0,
+    "_startRadiusVar": 0,
+    "_endRadius": 500,
+    "_endRadiusVar": 500,
+    "_rotatePerS": 0,
+    "_rotatePerSVar": 0,
+    "_N$preview": true
   }
 ]
