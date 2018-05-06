@@ -51,11 +51,20 @@ export default class World extends cc.Component {
     @property(cc.Label)
     labelScore: cc.Label = null;
 
+    @property(cc.Label)
+    labelScoreShadow: cc.Label = null;
+
     @property(cc.Prefab)
     btnRetry: cc.Prefab = null;
 
     @property(cc.Prefab)
     btnChallenge: cc.Prefab = null;
+
+    @property(cc.Prefab)
+    uiBestScore: cc.Prefab = null;
+
+    @property(cc.Prefab)
+    uiOverlay: cc.Prefab = null;
 
     //The main state machine
     mainFSM:StateMachine<MainStates> = null;
