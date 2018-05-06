@@ -25,10 +25,12 @@ export default class PressAndHolder extends cc.Component {
     touchTotalTime = null;
     isTouching = false;
     hasEndedTouch = false;
+    preTouched = false;
 
     //Events
     touchStart = null;
     touchEnd = null;
+    preTouch = null;
 
     //Callbacks
     private callbackTouchStart:Function = null;
@@ -39,19 +41,18 @@ export default class PressAndHolder extends cc.Component {
 
     onLoad() {
         this.enabled = false;
+        this.preTouch = this.node.on(cc.Node.EventType.TOUCH_START, function onTouchStart(event) {
+            this.preTouched = true;
+        }, this, true);
     }
 
     enableListeners() {
         this.enabled = true;
         this.isTouching = false;
         this.hasEndedTouch = false;
-        this.touchStart = this.node.on(cc.Node.EventType.TOUCH_START, function onTouchStart(event) {
-            if(!this.enabled || this.hasEndedTouch) return;
-            this.callbackTouchStart.call(this.target, this.maxPressTimeMS);
-            this.touchStartTime = Date.now();
-            this.isTouching = true;
-        }, this, true);
+        this.touchStart = this.node.on(cc.Node.EventType.TOUCH_START, this.startHold, this, true);
         this.touchEnd = this.node.on(cc.Node.EventType.TOUCH_END, function onTouchEnd(event) {
+            this.preTouched = false;
             if(!this.enabled || !this.isTouching) return;
             this.hasEndedTouch = true;
             this.touchEndTime = Date.now();
@@ -59,6 +60,17 @@ export default class PressAndHolder extends cc.Component {
             if (this.touchTotalTime >= this.maxPressTimeMS) this.touchTotalTime = this.maxPressTimeMS;
             this.callbackTouchEnd.call(this.target, this.touchTotalTime / this.maxPressTimeMS);
         }, this, true);
+
+        if(this.preTouched){
+            this.startHold();
+        }
+    }
+
+    startHold (event) {
+        if(!this.enabled || this.hasEndedTouch) return;
+        this.callbackTouchStart.call(this.target, this.maxPressTimeMS);
+        this.touchStartTime = Date.now();
+        this.isTouching = true;
     }
 
     disableListeners() {
