@@ -18,6 +18,8 @@ export default class IntroController extends cc.Component {
  
     @property(World)
     world:World = null;
+    @property(cc.Label)
+    instructionLabel:cc.Label = null;
 
     animation:cc.Animation;
 
@@ -28,36 +30,32 @@ export default class IntroController extends cc.Component {
 
     start () {
         this.addListeners();
-        cc.log(this.onTouchStart);
-        cc.log(this.onTouchEnd);
     }
 
     touchStart(event) {
-        cc.log('touch start');
+        cc.log(this.instructionLabel);
+        this.instructionLabel.string = "Release";
     }
 
     touchEnd(event) {
-        cc.log('touch end');
+        this.instructionLabel.string = " ";
         this.playIntro();
         this.removeListeners();
     }
         
 
     removeListeners () {
-        cc.log('removed listeners');
         this.node.off(cc.Node.EventType.TOUCH_START, this.touchStart, this.node);
         this.node.off(cc.Node.EventType.TOUCH_END, this.touchEnd, this.node);
     }
 
     addListeners () {
-        cc.log('add listeners');
         this.onTouchStart = this.node.on(cc.Node.EventType.TOUCH_START, this.touchStart, this, true);
         this.onTouchEnd = this.node.on(cc.Node.EventType.TOUCH_END, this.touchEnd, this, true);
     }
 
 
     playIntro () {
-        cc.log('play intro');
         this.animation = this.getComponent(cc.Animation);
         this.animation.play();
         this.animation.on('finished', this.goToGameState, this);
