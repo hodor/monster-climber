@@ -54,6 +54,7 @@ export default class GameState extends StateComponent {
     updateScore(){
         this.score += this.world.player.handleScore(this.world.monsterFactory.totalSafeHeight);
         this.world.labelScore.string = this.score.toFixed(0);
+        this.world.labelScoreShadow.string = this.score.toFixed(0);
     }
 
     handleLose(){
@@ -66,5 +67,6 @@ export default class GameState extends StateComponent {
         this.score = 0;
         this.world.player.resetScore();
         this.world.labelScore.string = this.score.toFixed(0);
+        this.world.labelScoreShadow.string = this.score.toFixed(0);
     }
 }
