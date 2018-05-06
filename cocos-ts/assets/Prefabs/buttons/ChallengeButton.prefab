@@ -47,8 +47,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 581,
-      "height": 78
+      "width": 500,
+      "height": 67
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -164,7 +164,7 @@
     "_left": -50,
     "_right": 590,
     "_top": 0,
-    "_bottom": 235,
+    "_bottom": 240.5,
     "_verticalCenter": 0,
     "_horizontalCenter": 0,
     "_isAbsLeft": true,
