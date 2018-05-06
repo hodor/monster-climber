@@ -27,7 +27,9 @@ export default class Player extends cc.Component {
     @property(cc.AudioClip)
     PressAndHoldSound:cc.AudioClip = null;
     @property
-    loopSoundStart:number = 10;
+    loopSoundStart:number = 2.73;
+    @property
+    loopSoundEnd:number = 3.759;
     @property(cc.AudioClip)
     Landing:cc.AudioClip = null;
     @property(cc.AudioClip)
@@ -69,9 +71,9 @@ export default class Player extends cc.Component {
                 var newX = Player.initialPos.x + Math.sin(Date.now()) * dt * this.jitterOffset;
                 this.node.setPositionX(newX);
             }
-            if(!this.audioSource.isPlaying) {
-                this.audioSource.setCurrentTime(this.loopSoundStart);
-                this.audioSource.play();
+            if(this.audioSource.isPlaying) {
+                if(this.audioSource.getCurrentTime() >= this.loopSoundEnd)
+                    this.audioSource.setCurrentTime(this.loopSoundStart);
             }
         }
     }
