@@ -1141,7 +1141,7 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 37.5,
+      "x": 36,
       "y": 900
     },
     "_skewX": 0,
@@ -1162,7 +1162,7 @@
     "isAlignOnce": true,
     "_target": null,
     "_alignFlags": 9,
-    "_left": 21,
+    "_left": 19.5,
     "_right": 0,
     "_top": 30,
     "_bottom": 0,
@@ -1576,8 +1576,12 @@
     "world": {
       "__id__": 31
     },
-    "instructionHoldLabel": null,
-    "instructionReleaseLabel": null
+    "instructionHoldLabel": {
+      "__id__": 42
+    },
+    "instructionReleaseLabel": {
+      "__id__": 44
+    }
   },
   {
     "__type__": "cc.Animation",
