@@ -25,26 +25,36 @@ export default class IntroController extends cc.Component {
     instructionReleaseSprite:cc.Sprite = null;
 
     @property(cc.AudioClip)
-    PressAndHoldSound:cc.AudioClip = null;
+    monsterGrowl:cc.AudioClip = null;
 
     animation:cc.Animation;
 
     onTouchStart = null;
     onTouchEnd = null;
+
+
+    private growlAudioSource:cc.AudioSource = null;
+    private windAudioSource:cc.AudioSource = null;
     
     //onLoad () { };
-
+    
     start () {
+        this.growlAudioSource = this.node.getComponent(cc.AudioSource);
+        this.windAudioSource = this.node.getComponentInChildren(cc.AudioSource);
         this.addListeners();
-        this.playGrowl();
+        this.schedule(function() {
+             this.playGrowl();
+         }, 1, 0, false);
     }
 
 
     playGrowl() {
-        var waitTime = (Math.random()*2+5);
-        cc.log(waitTime);
-        cc.log('lol');
-        cc.Scheduler(this.playGrowl, waitTime, this, false);
+        var waitTime = (Math.random()*7+6);
+        console.log(waitTime);
+        this.growlAudioSource.play();
+        this.schedule(function() {
+             this.playGrowl();
+         }, waitTime, 0, false);
     }
 
     touchStart(event) {
@@ -94,7 +104,12 @@ export default class IntroController extends cc.Component {
         this.node.destroy();
     }
 
-    //update (dt) { }
+    update (dt) {
+        if(!this.onTouchEnd){
+            this.growlAudioSource.volume -= 0.01;
+            this.windAudioSource.volume -= 0.01;
+        }
+    }
 
 
 }
